@@ -5,7 +5,7 @@
 
 nav.navbar{
     display: flex;
-    height:20px;
+    height:40px;
     border-bottom: 1px solid black;
 }
 div#leftnav{
@@ -25,14 +25,15 @@ div#rightnav{
 
 /* refactor below? */
 
-
+/* 
 *{
     box-sizing: border-box;
  }
 
  *:before, *:after{
     box-sizing: border-box;
- }
+ } */
+ 
 body{
     background-color: #e8e3da;
     margin: 0;
