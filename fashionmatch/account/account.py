@@ -20,7 +20,7 @@ def register():
         )
         
     if request.method == 'POST':
-        username = request.values.get('email') # Your form's
-        password = request.values.get('password') # input names
+        username = request.values.get('email') 
+        password = request.values.get('password') 
         print(username,password)
         return make_response("WORKS", 200)
