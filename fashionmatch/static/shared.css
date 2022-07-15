@@ -9,20 +9,24 @@ body{
 
 
 nav.navbar{
-    padding: 5px;
+    padding: 8px;
     display: flex;
-    height:40px;
+    height:30px;
     border-bottom: 1px solid black;
 }
 div#leftnav{
-
+    /* do something here idk */
 }
+span#title{
+    font-size: 30px;
+}
+
+
 div#spacer{
     flex-grow: 1;
-    
 }
 div#rightnav{
-    
+    /* also do something here idk */
 }
 
 
