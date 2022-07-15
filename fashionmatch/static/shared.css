@@ -14,19 +14,13 @@ nav.navbar{
     height:30px;
     border-bottom: 1px solid black;
 }
-div#leftnav{
-    /* do something here idk */
-}
 span#title{
-    font-size: 30px;
+    font-size: 25px;
 }
 
 
 div#spacer{
     flex-grow: 1;
-}
-div#rightnav{
-    /* also do something here idk */
 }
 
 
