@@ -7,7 +7,7 @@ account_bp = Blueprint(
 
 
 @account_bp.route("/", methods=["GET"])
-def homaccounte():
+def home():
     return render_template(
         "account.jinja2",
     )

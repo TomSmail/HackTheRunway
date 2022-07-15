@@ -1,3 +1,7 @@
 {% extends "base.jinja2" %}
 
-{% block main %}Home{% endblock %}
+{% block main %}
+Home template
+
+<p>Example link - <a href="{{ url_for('account_bp.home') }}">Account</a></p>
+{% endblock %}
