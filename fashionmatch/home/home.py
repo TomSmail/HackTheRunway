@@ -10,6 +10,4 @@ main_bp = Blueprint(
 def home():
     return render_template(
         "home.jinja2",
-        home_footer="Disclaimer Text",
-        fullname=session.get("fullname","Unknown Name")
     )
