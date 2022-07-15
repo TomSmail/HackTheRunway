@@ -6,7 +6,7 @@ import config
 
 def init_app():
     """Create Flask application."""
-    app = Flask(__name__, instance_relative_config=False)
+    app = Flask(__name__, instance_relative_config=False, template_folder="templates")
 
     with app.app_context():
 
