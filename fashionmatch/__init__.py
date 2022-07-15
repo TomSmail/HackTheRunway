@@ -5,7 +5,7 @@ from .account import account
 
 import config
 
-db = SQLAlchemy()
+#db = SQLAlchemy()
 
 def init_app():
     """Create Flask application."""
