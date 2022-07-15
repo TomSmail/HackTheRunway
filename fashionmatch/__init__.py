@@ -2,13 +2,15 @@ from flask import Flask
 
 from .home import home
 
+import config
+
 def init_app():
     """Create Flask application."""
     app = Flask(__name__, instance_relative_config=False)
 
     with app.app_context():
 
-        #app.config.from_object(__name__)
+        app.config.from_object(config.DebugConfig)
 
 
         # Register Blueprints
