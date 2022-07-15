@@ -1,9 +1,15 @@
 
 
-
+html,
+body{
+    background-color: white;
+    font-family: sans-serif;
+    margin: 0px;
+}
 
 
 nav.navbar{
+    padding: 5px;
     display: flex;
     height:40px;
     border-bottom: 1px solid black;
@@ -32,8 +38,8 @@ div#rightnav{
 
  *:before, *:after{
     box-sizing: border-box;
- } */
- 
+ } 
+
 body{
     background-color: #e8e3da;
     margin: 0;
@@ -54,7 +60,7 @@ body{
     text-align: center;
     color: #242424;
  }
-/* nav {
+ nav {
     background-color: #242424;
     position: fixed;
     width: 100%;
@@ -96,7 +102,9 @@ nav a:hover {
      top: 0;
      z-index: 1;
  }
- */header{
+
+
+header{
     position: relative;
     background-color: #242424;
     height: 5vh;
@@ -168,4 +176,4 @@ background-color: #00801A;
 border-radius: 7px;
 border: 2px solid #024e12;
 font-size: 20px
-}
+} */
