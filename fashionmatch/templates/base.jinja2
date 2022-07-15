@@ -3,11 +3,14 @@
 <html>
 
 <head>
-<link rel="stylesheet" href="{{url_for('static', filename='shared.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='shared.css')}}">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - Swapify</title>
+
 </head>
 
 <body>
-I apologise for the background color.<br>
+
 {% block main %}{% endblock %}
 
 </body>
