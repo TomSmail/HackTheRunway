@@ -1,3 +1,31 @@
+
+
+
+
+
+nav.navbar{
+    display: flex;
+    height:20px;
+    border-bottom: 1px solid black;
+}
+div#leftnav{
+
+}
+div#spacer{
+    flex-grow: 1;
+    
+}
+div#rightnav{
+    
+}
+
+
+
+
+
+/* refactor below? */
+
+
 *{
     box-sizing: border-box;
  }
@@ -25,7 +53,7 @@ body{
     text-align: center;
     color: #242424;
  }
-nav {
+/* nav {
     background-color: #242424;
     position: fixed;
     width: 100%;
@@ -67,7 +95,7 @@ nav a:hover {
      top: 0;
      z-index: 1;
  }
-header{
+ */header{
     position: relative;
     background-color: #242424;
     height: 5vh;
