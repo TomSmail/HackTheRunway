@@ -15,5 +15,4 @@ class DebugConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
     DB_HOST = 'my.production.database'
-    UPLOAD_FOLDER = "uploads"
 
