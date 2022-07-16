@@ -1,3 +1,3 @@
-INSERT INTO 'User' (email, passwordhash, firstname, lastname) VALUES ('bob@example.com', '$argon2id$v=19$m=65536,t=3,p=4$O8cYA2CMEcI4R+hdq3Vu7Q$nHuJWR6liXEHzGjR5LFshVqIXC0R7/TMl3t5nqMKwaY', 'Bob', 'bob');
-INSERT INTO 'User' (email, passwordhash, firstname, lastname) VALUES ('jeff@example.com', '$argon2id$v=19$m=65536,t=3,p=4$/V+rVQrhXMv5X2stZWwtJQ$+WCYLssNXMu4bkN/S9Neptu0MP/sfWJlRGRwif/jXoI', 'Jeff', 'jeff');
-INSERT INTO 'User' (email, passwordhash, firstname, lastname) VALUES ('mike@example.com', '$argon2id$v=19$m=65536,t=3,p=4$ttYaY+w9RygFACAkJKS0tg$xxCy+UKBvyZjbdzJRqqD4LRc0jgO1/ABPU185VT0Vu8', 'Mike', 'mike');
+INSERT INTO "User" (email, passwordhash, firstname, lastname) VALUES ('bob@example.com', '$argon2id$v=19$m=65536,t=3,p=4$O8cYA2CMEcI4R+hdq3Vu7Q$nHuJWR6liXEHzGjR5LFshVqIXC0R7/TMl3t5nqMKwaY', 'Bob', 'bob');
+INSERT INTO "User" (email, passwordhash, firstname, lastname) VALUES ('jeff@example.com', '$argon2id$v=19$m=65536,t=3,p=4$/V+rVQrhXMv5X2stZWwtJQ$+WCYLssNXMu4bkN/S9Neptu0MP/sfWJlRGRwif/jXoI', 'Jeff', 'jeff');
+INSERT INTO "User" (email, passwordhash, firstname, lastname) VALUES ('mike@example.com', '$argon2id$v=19$m=65536,t=3,p=4$ttYaY+w9RygFACAkJKS0tg$xxCy+UKBvyZjbdzJRqqD4LRc0jgO1/ABPU185VT0Vu8', 'Mike', 'mike');
