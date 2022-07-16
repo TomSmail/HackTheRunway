@@ -7,7 +7,6 @@ from .swap import swap
 
 import config
 
-UPLOAD_FOLDER = "../uploads"
 
 def init_app():
     """Create Flask application."""
