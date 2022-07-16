@@ -10,22 +10,25 @@ swap_bp = Blueprint(
     "swap_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/sstatic'
 )
 
-ALLOWED_EXTENSIONS = {'png','jpg','jpeg','jpg','gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'jpg', 'gif'}
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 
 @swap_bp.route("/", methods=["GET"])
 def main():
     return render_template(
         "swap.jinja2",
-        PFPs=["https://avatars.githubusercontent.com/u/37508609?s=64&v=4","https://i.stack.imgur.com/56V4z.jpg?s=64&g=1","https://avatars.githubusercontent.com/u/30555853?s=64&v=4"],
-        Names=["Hamish","John","Mike"],
+        PFPs=["https://avatars.githubusercontent.com/u/37508609?s=64&v=4",
+              "https://i.stack.imgur.com/56V4z.jpg?s=64&g=1", "https://avatars.githubusercontent.com/u/30555853?s=64&v=4"],
+        Names=["Hamish", "John", "Mike"],
         receiver_uname="John",
         sender_uname="Mike",
-        locations=[{"lat":51.5,"long":-0.09},{"lat":29.7,"long":-5.0},{"lat":20.0,"long":5.0}]
+        locations=[{"lat": 51.5, "long": -0.09},
+                   {"lat": 29.7, "long": -5.0}, {"lat": 20.0, "long": 5.0}]
     )
 
 
@@ -35,9 +38,10 @@ def hasitem():
         return render_template("hasitem.jinja2")
     if request.method == 'POST':
         db, cur = get_db()
-        print(request.files)
+
         file = request.files["image"]
-        if file.filename == '':
+
+        if file.filename == "":
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
@@ -47,38 +51,28 @@ def hasitem():
         colour = request.values.get('colour')
         typeOfItem = request.values.get('type')
         pricerange = request.values.get('pricerange')
-        condition = request.values.get('condition')
+        condition = request.values.get('condition') # actually string!
         cotton = request.values.get('cotton')
         locationmade = request.values.get('locationmade')
 
-        if 'image' not in request.files:
-            return Response("You need a file", status=301, mimetype='application/json')
-
-
-
-        file = request.files['image']
-
-        # From the flask documentation
-        # If the user does not select a file, the browser submits an
-        # empty file without a filename.
-
-
         cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
-                    (colour,typeOfItem,pricerange, condition))
+                    (colour, typeOfItem, pricerange, condition))
         articles = cur.fetchall()
-        if len(articles) != 0: #article already exists
+        if len(articles) != 0:  # article already exists
             articleid = articles[0][0]
-            userid = session['uid'];
-            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES (%s, %s,%s,%s,%s);""",(userid,articleid,filename,cotton,locationmade))
+            userid = session['uid']
+            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem, cotton, locationmade) VALUES (%s, %s,%s,%s,%s);""",
+                        (userid, articleid, filename, cotton, locationmade))
         else:
             cur.execute("""INSERT INTO "Article"(color,typeofclothing,pricerange,condition) VALUES (%s,%s,%s,%s);""",
-                    (colour,typeOfItem,pricerange,condition))
+                        (colour, typeOfItem, pricerange, condition))
             cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
-                        (colour,typeOfItem,pricerange, condition))
+                        (colour, typeOfItem, pricerange, condition))
             articles = cur.fetchall()
             articleid = articles[0][0]
-            userid = session['uid'];
-            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES (%s, %s,%s,%s,%s);""",(userid,articleid,filename,cotton,locationmade))
+            userid = session['uid']
+            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES (%s, %s,%s,%s,%s);""",
+                        (userid, articleid, filename, cotton, locationmade))
 
         return redirect(url_for("home_bp.home"))
 
