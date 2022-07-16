@@ -2,54 +2,78 @@
 
 {% block main %}
 
-<script>
-</script>
 
-Swapify lets you swap clothes that you don't want any more to save money and help the planet. To get started, simply select the items you have and the items you are looking for, and upload photos of the items you have.
+<p style="text-align:left;padding-right:40px;"> Swapify lets you swap clothes that you don't want any more to save money and help the planet. To get started, simply select the items you have and the items you are looking for, and upload photos of the items you have. </p>
 
-<h3>I have...</h3>
-<table> 
-    <form method="post" enctype="multipart/form-data">
-</form>
-    <tr> <th>Type of clothing</th> <th>Colour</th> <th>Price Range</th> <th>Condition</th> <th>Upload Photo</th> </tr>
-    <tr> 
-        <td>
-            <select name="type">
-                <option value="tshirt">T-Shirt</option>
-                <option value="shorts">Shorts</option>
-                <option value="dress">Dress</option>
-            </select>
-        </td>
+<div id="swapChoices" style="background-color:#98fb98;">
+    <h3>I have...</h3>
+    <table id="chooseTable"> 
+        <form method="post" enctype="multipart/form-data">
+    </form>
+        <tr> <th>Type of clothing</th> <th>Colour</th> <th>Price Range</th> <th>Condition</th> <th>Upload Photo</th> </tr>
+        <tr id="singleRow" hidden> 
+            <td>
+                <div class="customSelect">
+                    <select name="type">
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="shorts">Shorts</option>
+                        <option value="dress">Dress</option>
+                    </select>
+                </div>
+            </td>
 
-        <td>
-            <select name="color">
-                <option value="tshirt">Blue</option>
-                <option value="shorts">Yellow</option>
-                <option value="dress">Orange</option>
-                <option value="dress">Red</option>
-                <option value="dress">Green</option>
-            </select>
-        </td>
+            <td>
+                <select name="colour">
+                    <option value="tshirt">Blue</option>
+                    <option value="shorts">Yellow</option>
+                    <option value="dress">Orange</option>
+                    <option value="dress">Red</option>
+                    <option value="dress">Green</option>
+                </select>
+            </td>
+            <td>
+                <select name="pricerange">
+                    <option value="£">£</option>
+                    <option value="££">££</option>
+                    <option value="£££">£££</option>
+                </select>
+            </td>            
 
-        <td>
-            <select name="condition">
-                <option value="asnew">Blue</option>
-                <option value="somewear">Yellow</option>
-                <option value="heavilyworm">Orange</option>
-            </select>
-        </td>
+            <td>
+                <select name="condition">
+                    <option value="asnew">Blue</option>
+                    <option value="somewear">Yellow</option>
+                    <option value="heavilyworm">Orange</option>
+                </select>
+            </td>
 
-        <td> 
-            <input type="file" name="file1">
-        </td>
+            <td> 
+                <input type="file" name="file1">
+            </td>
 
-    </tr>
-</table>
-<h3>I am looking for...</h3>
+        </tr>
+    </table>
+    
+    <button class="addGarment" onclick="addRow()" >Add Garment</button>
 
-
+    <h3>I am looking for...</h3>
+</div>
 
 <button id="save" onclick="">Save</button>
+
+<script>
+
+function addRow() {
+    var clone = document.getElementById("singleRow").cloneNode(true)
+    clone.hidden = false;
+    document.getElementById("chooseTable").appendChild(clone)
+}
+
+addRow();
+
+</script>
+
+
 
 
 {% endblock %}

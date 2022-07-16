@@ -60,6 +60,6 @@ graph = [
 #]
 
 # A <-> B <-> C <-> A aaaagh
-find cycles every time a new garment is selected
+#find cycles every time a new garment is selected
 
 print(cycleFind(graph))

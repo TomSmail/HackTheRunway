@@ -9,7 +9,7 @@
 
 def genGraph(conn):
 
-  numUsers = len(conn.execute(text("SELECT * FROM Users")).fetchall())  
+  numUsers = int(conn.execute(text("SELECT UserID FROM Users")).fetchall()[-1]["UserID"])
   edges = conn.execute(text("SELECT * FROM User_Has INNER JOIN User_Wants ON User_Has.ArticleID = User_Wants.ArticleID")).fetchall()
   
   graph = [[] for i in range(numUsers)]
