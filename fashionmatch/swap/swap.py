@@ -24,7 +24,7 @@ def main():
     )
 
 
-@swap_bp.route("/hasitem", methods=["GET", "POST"])
+@swap_bp.route("/additem", methods=["GET", "POST"])
 def additem():
     if request.method == 'GET':
         return render_template("add.jinja2")
