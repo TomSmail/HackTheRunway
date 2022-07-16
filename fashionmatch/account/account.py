@@ -41,12 +41,7 @@ def login():
         else:
             session['email'] = email
             return redirect(url_for("account_bp.home"))
-   
-        #validate pw
 
-        
-
-        
 
 @account_bp.route("/register", methods=["GET", "POST"])
 def register():
