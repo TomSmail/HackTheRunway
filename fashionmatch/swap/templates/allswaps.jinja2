@@ -1,0 +1,28 @@
+{% extends "base.jinja2" %}
+
+{# This page is for confirming the swap between people#}
+
+{% block extrastyles %}<link rel="stylesheet" href="{{url_for('swap_bp.static', filename='item.css')}}">{% endblock %}
+
+
+{% block main %}
+
+    {% if number == 0 %}
+        <p> No swaps here. :( </p>
+    {% else %}
+
+
+        <p>You have {{number}} {{ 'swap' if number==1 else 'swaps' }}!</p>
+
+        {% for item in items %}
+            <tr>
+                <td> {{ 'OneStatus' if item.status==1 else 'ZeroStatus' }}</td>
+
+                <img src="{{ url_for('home_bp.download_file', filename=item.imageofitem) }} " alt="img" width="50%" >
+
+            </tr>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}

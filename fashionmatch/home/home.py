@@ -22,7 +22,6 @@ def home():
     uid = (session.get("uid", None))
     print(uid)
     cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID WHERE HasUserID=%s;', (str(uid),))
-
     amount = len(cur.fetchall())
 
     return render_template(
