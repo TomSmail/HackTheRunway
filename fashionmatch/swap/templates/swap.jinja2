@@ -153,7 +153,7 @@ L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
                 var simpleVector1; var marker;
                 {%for location in locations%}
                     marker = L.marker([{{location["lat"]}}, {{location["long"]}}],{icon:greenIcon}).addTo(map).bindPopup("test");
-                    simpleVector1 = L.polyline([[{%if loop.first%}{{locations[-1]["lat"]}}{%else%}{{loop.previtem["lat"]}}{%endif%},{%if loop.first%}{{locations[-1]["long"]}}{%else%}{{loop.previtem["long"]}}{%endif%}],[{{location["lat"]}}, {{location["long"]}}]], {color: "green", weight: 2 }).addTo(map).arrowheads({size: '10%', frequency: 'endonly'})
+                    simpleVector1 = L.polyline([[{%if loop.first%}{{locations[-1]["lat"]}}{%else%}{{loop.previtem["lat"]}}{%endif%},{%if loop.first%}{{locations[-1]["long"]}}{%else%}{{loop.previtem["long"]}}{%endif%}],[{{location["lat"]}}, {{location["long"]}}]], {color: "green", weight: 2 }).addTo(map).arrowheads({size: '20px', frequency: "endonly",end:"100000m",fill:true})
                 {%endfor%}
                 
             </script>
