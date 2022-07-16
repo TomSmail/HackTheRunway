@@ -31,16 +31,15 @@
     </div>
 
 
-    {% for n in range(100) %}
+    {% for item in response %}
     <div class="half box item">
-        <span>Image, id</span>&nbsp;<span>{{ n }}</span>
+        <span>Image, id</span>&nbsp;<span>{{ item }}</span>
     </div>
     
-{% endfor %}
+    {% endfor %}
 
 
 
-Your items for swapping: 
 
 
 
