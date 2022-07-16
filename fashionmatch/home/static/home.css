@@ -70,5 +70,7 @@ p{
 }
 
 table.datatable{
+    box-sizing: border-box;
+    margin-top: 15px;
     width: 90%;
 }
