@@ -1,0 +1,61 @@
+{% extends "base.jinja2" %}
+
+{# This page is for confirming the swap between people#}
+
+{% block main %}
+
+add item here
+
+<form method="POST">
+  <table id="IHave"> 
+          <tr> <th>Type of clothing</th> <th>Colour</th> <th>Price Range</th> <th>Condition</th> <th>Upload Photo</th> </tr>
+        <tr id="singleRowIHave" > 
+            <td>
+                <div class="customSelect">
+                    <select name="type">
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="shorts">Shorts</option>
+                        <option value="dress">Dress</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <select name="colour">
+                    <option value="tshirt">Blue</option>
+                    <option value="shorts">Yellow</option>
+                    <option value="dress">Orange</option>
+                    <option value="dress">Red</option>
+                    <option value="dress">Green</option>
+                </select>
+            </td>
+            <td>
+                <select name="pricerange">
+                    <option value="£">£</option>
+                    <option value="££">££</option>
+                    <option value="£££">£££</option>
+                </select>
+            </td>            
+
+            <td>
+                <select name="condition">
+                    <option value="asnew">Blue</option>
+                    <option value="somewear">Yellow</option>
+                    <option value="heavilyworm">Orange</option>
+                </select>
+            </td>
+
+            <td> 
+                <input type="file" name="file1">
+            </td>
+
+        </tr>
+    </table>
+
+  <input type="submit" value="Submit">
+</form> 
+
+
+
+
+{% endblock %}
