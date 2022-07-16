@@ -50,14 +50,16 @@ def register():
             "register.jinja2",
         )
     if request.method == 'POST':
+        first_name = request.values.get('firstName')
+        last_name = request.values.get('lastName')
         email = request.values.get('email')
         password = request.values.get('password')
         # HASHING
         passwordhash = argon2.hash(password)
         # DB
         db, cur = get_db()
-        cur.execute('INSERT INTO "User" (email, passwordhash) VALUES (%s, %s);',
-                    (email, passwordhash))
+        cur.execute('INSERT INTO "User" (email, passwordhash, firstname, lastname) VALUES (%s, %s, %s, %s);',
+                    (email, passwordhash, first_name, last_name ))
 
         # Session
         session['email'] = email
