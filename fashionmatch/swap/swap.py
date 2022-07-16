@@ -24,6 +24,7 @@ def allowed_file(filename):
 @swap_bp.route("/", methods=["GET"])
 @ensurelogin
 def main():
+    # List all swaps here
     return True
 
 @swap_bp.route('/<id>')  
