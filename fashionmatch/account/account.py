@@ -43,7 +43,15 @@ def login():
         if not argon2.verify(password, pwhash):
             return redirect(url_for("account_bp.login"))
         else:
+            db, cur = get_db()
+
+            cur.execute("""SELECT userid FROM "User" WHERE email=%s;""", (email,))
+
+            # Session
             session['email'] = email
+            session['uid'] = cur.fetchall()[0]["userid"];            
+
+
             return redirect(url_for("home_bp.home"))
 
 
@@ -69,7 +77,7 @@ def register():
 
         # Session
         session['email'] = email
-        session['uid'] = cur.fetchall()[0][0];
+        session['uid'] = cur.fetchall()[0]["userid"];
         # return
         return redirect(url_for("home_bp.home"))
 
