@@ -5,8 +5,11 @@
     <h2> Leaderboard </h2>
 
     <div class = "center">
+        <table class="leaderboard">
+        <tr><th>Name</th><th>Score</th></tr>
         {% for item in response %}
-            <p>{{item["firstname"]}} {{item["lastname"]}} : {{item["points"]}}✰</p>
+            <tr><td>{{item["firstname"]}} {{item["lastname"]}}</td> <td>{{item["points"]}}✰</td></tr>
         {% endfor %}
+        </table>
     </div>
 {% endblock %}
