@@ -36,7 +36,7 @@ def main():
 def hasitem():
     if request.method == 'GET':
         return render_template("hasitem.jinja2")
-    if request.method == 'POST':
+    elif request.method == 'POST':
         db, cur = get_db()
 
         file = request.files["image"]
@@ -56,7 +56,7 @@ def hasitem():
         locationmade = request.values.get('locationmade')
         print(cotton)
         print(locationmade)
-        
+
         cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                     (colour, typeOfItem, pricerange, condition))
         articles = cur.fetchall()
@@ -86,4 +86,32 @@ def wantitem():
     if request.method == 'GET':
         return render_template("wantitem.jinja2")
     elif request.method == 'POST':
-        return render_template("wantitem.jinja2")
+        db, cur = get_db()
+    
+        colour = request.values.get('colour')
+        typeOfItem = request.values.get('type')
+        pricerange = request.values.get('pricerange')
+        condition = request.values.get('condition') # actually string!
+        
+        cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
+                    (colour, typeOfItem, pricerange, condition))
+        articles = cur.fetchall()
+        if len(articles) != 0:  # article already exists
+            #print(articles)
+            articleid = articles[0]["articleid"]
+            userid = session['uid']
+            cur.execute("""INSERT INTO "User_Wants" (wantsuserid, articleid) VALUES (%s, %s);""",
+                        (userid, articleid))
+        else:
+            cur.execute("""INSERT INTO "Article"(color,typeofclothing,pricerange,condition) VALUES (%s,%s,%s,%s);""",
+                        (colour, typeOfItem, pricerange, condition))
+            cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
+                        (colour, typeOfItem, pricerange, condition))
+            articles = cur.fetchall()
+            #print(articles)
+            articleid = articles[0]["articleid"]
+            userid = session['uid']
+            cur.execute("""INSERT INTO "User_Wants" (wantsuserid, articleid ) VALUES (%s, %s);""",
+                        (userid, articleid))
+
+        return redirect(url_for("home_bp.home"))
