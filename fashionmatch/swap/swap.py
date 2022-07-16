@@ -24,10 +24,10 @@ def main():
     )
 
 
-@swap_bp.route("/addhasitem", methods=["GET", "POST"])
-def addhasitem():
+@swap_bp.route("/hasitem", methods=["GET", "POST"])
+def hasitem():
     if request.method == 'GET':
-        return render_template("add.jinja2")
+        return render_template("hasitem.jinja2")
     if request.method == 'POST':
         db, cur = get_db()
 
