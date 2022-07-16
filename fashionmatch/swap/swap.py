@@ -1,3 +1,4 @@
+from xml.dom.expatbuilder import InternalSubsetExtractor
 from flask import Blueprint, Response, make_response, url_for, redirect, request, render_template, flash, session
 from flask import current_app as app
 import os
@@ -27,20 +28,72 @@ def main():
     # List all swaps here
     return True
 
+
+
 @swap_bp.route('/<id>')  
 @ensurelogin
 def swapid(id):
-    #cur  
+    db, cur = get_db()
+
+    cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID INNER JOIN "Users" ON "Users".userid="User_Has".hasuserid WHERE matchid=%s;',(id))
+    results = cur.fetchall()
+
+    pfps = []
+    names = []
+    receiver_uname = ""
+    sender_uname = ""
+    receiver_image = ""
+    sender_image = ""
+
+    #IDEALLY WE WANT TO CENTER THE USER SO THEY ARE AT THE MIDDL EOF THE PAGe / MAYB ENOT AN ISSUE 
+    #SCROLLBAR?
+
+    def getNext(record):
+        nonlocal pfps, names
+        pfps.append(record["profilepicturelink"])
+        names.append(record["firstname "])
+    
+    
+        db, cur = get_db()
+        cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID INNER JOIN "Users" ON "Users".userid="User_Has".hasuserid WHERE matchid=%s;',(id))
+
+    # startItem = results[0]
+    # item = 
+
+    # while item != startItem:
+
+    #     if item["userid"] in participantCounts:
+
+    #     else:
+    #         participantCounts.insert(item["userid"])
+
+    
+
+
+    amount = len(cur.fetchall())
+
     return render_template(
         "swap.jinja2",
-        PFPs=["https://avatars.githubusercontent.com/u/37508609?s=64&v=4",
-              "https://i.stack.imgur.com/56V4z.jpg?s=64&g=1", "https://avatars.githubusercontent.com/u/30555853?s=64&v=4"],
-        Names=["Hamish", "John", "Mike"],
-        receiver_uname="John",
-        sender_uname="Mike",
+        PFPs=pfps,
+        Names=names,
+        receiver_uname=receiver_uname,
+        sender_uname=sender_uname,
+        giving_image_url=receiver_image,
+        getting_image_url=sender_image,
         locations=[{"lat": 51.5, "long": -0.09},
                    {"lat": 29.7, "long": -5.0}, {"lat": 20.0, "long": 5.0}]
     )
+
+    # return render_template(
+    #     "swap.jinja2",
+    #     PFPs=["https://avatars.githubusercontent.com/u/37508609?s=64&v=4",
+    #           "https://i.stack.imgur.com/56V4z.jpg?s=64&g=1", "https://avatars.githubusercontent.com/u/30555853?s=64&v=4"],
+    #     Names=["Hamish", "John", "Mike"],
+    #     receiver_uname="John",
+    #     sender_uname="Mike",
+    #     locations=[{"lat": 51.5, "long": -0.09},
+    #                {"lat": 29.7, "long": -5.0}, {"lat": 20.0, "long": 5.0}]
+    # )
 
 # CREATE TABLE "Match_Article" (
 # 	MatchArticleID SERIAL PRIMARY KEY NOT NULL,
