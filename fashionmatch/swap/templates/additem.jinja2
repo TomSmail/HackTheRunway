@@ -2,9 +2,13 @@
 
 {# This page is for confirming the swap between people#}
 
+{% block extrastyles %}<link rel="stylesheet" href="{{url_for('swap_bp.static', filename='item.css')}}">{% endblock %}
+
+
 {% block main %}
 
-add item here
+<h2>Add item</h2>
+
 
 <form method="POST">
   <table id="IHave"> 
@@ -52,7 +56,7 @@ add item here
         </tr>
     </table>
 
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" class="btn">
 </form> 
 
 
