@@ -13,19 +13,15 @@ def main():
     )
 
 
-@swap_bp.route("/swapping", methods=["GET", "POST"])
-def swapping():
+@swap_bp.route("/swap", methods=["GET", "POST"])
+def swap():
     if request.method == "GET":
         return render_template(
             "swapping.jinja2",
     )
     elif request.method =="POST":
         approved = request.values.get("approved") # if the user is happy with the swap they will send a bool
-        return redirect(url_for("swap_bp.swapped")) # want to redirect to swapped page -- NOT SURE IF THIS WORKS
+        return approved
+        # NOT SURE WHAT TO RETURN
+        #return redirect(url_for("swap_bp.swapped"))
 
-
-@swap_bp.route("/swapped", methods=["GET"])
-def swapped():
-    return render_template(
-        "swapped.jinja2",
-    )
