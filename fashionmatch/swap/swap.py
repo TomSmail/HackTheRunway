@@ -10,6 +10,7 @@ swap_bp = Blueprint(
 def main():
     return render_template(
         "swap.jinja2",
+        PFPs=["https://i.stack.imgur.com/56V4z.jpg?s=64&g=1",""]
     )
 
 
