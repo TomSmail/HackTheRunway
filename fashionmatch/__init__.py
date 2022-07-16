@@ -43,7 +43,8 @@ def init_app():
         app.config.from_object(config.DebugConfig)
 
         from . import db
-        db.init_app(app)
+        
+        #db.init_db(app)
 
         
         
