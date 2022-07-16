@@ -31,7 +31,11 @@ nav.navbar a {
     font-size: 18px;
     padding-right: 20px;
 }
+span{
+    font-size: 18px;
+    padding-right: 12px;
 
+}
 nav.navbar a:hover {
     /* cursor hovering */
     color: rgb(180, 180, 180);
