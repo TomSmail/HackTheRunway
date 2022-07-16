@@ -20,6 +20,12 @@ def main():
 
 
 
+@swap_bp.route("/additem", methods=["GET"])
+def add():
+    return render_template("add.jinja2")
+
+
+
 
 
 
