@@ -10,16 +10,16 @@
 <div id="maincontainer">
 
     {% if true %}
-    <div class="full box" id="newswap"">
-        <span>1 NEW SWAP</span>
+    <div class="full box" id="alert"">
+        <span>1 NEW SWAP HAS HAPPENED</span>
     </div>
     {% endif %}
 
-    <div class="half box">
-        <span>Add Item</span>
+    <div class="half box"  id="add">
+        <span id="addspan">Add Item +</span>
     </div>
-    <div class="half box">
-        <span>View all Public items</span>
+    <div class="half box"  id="viewall">
+        <span id="viewallspan">View all Public items</span>
     </div>
 
 
@@ -30,7 +30,7 @@
 
     {% for n in range(100) %}
     <div class="half box item">
-        <span>{{ n }}</span>
+        <span>Image, id</span>&nbsp;<span>{{ n }}</span>
     </div>
     
 {% endfor %}
