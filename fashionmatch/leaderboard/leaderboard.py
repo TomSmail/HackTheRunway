@@ -14,7 +14,6 @@ def home():
     db, cur = get_db()
     cur.execute('SELECT  firstname, lastname, points FROM "User" ORDER BY points',)
     resp = cur.fetchall()
-    print(resp)
     return render_template(
         "leaderboard.jinja2",
         response=resp
