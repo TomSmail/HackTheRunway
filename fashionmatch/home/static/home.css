@@ -38,13 +38,11 @@ div#request {
     background-image: url("https://images.unsplash.com/photo-1542060748-10c28b62716f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
 }
 
-div.withlink{
+div.withlink {
     display: flex;
     align-items: center;
     height: 140px;
     justify-content: center;
-
-
 }
 
 
@@ -53,8 +51,6 @@ a.sublink {
     font-size: 25px;
     cursor: pointer;
 }
-
-
 
 div.item {
     border: 1px solid black;
