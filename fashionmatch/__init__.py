@@ -23,7 +23,7 @@ def init_app():
 
         from . import db
         
-        #db.init_db(app)
+        # db.init_db() ONLY run this to create the schema afresh
 
         
         
