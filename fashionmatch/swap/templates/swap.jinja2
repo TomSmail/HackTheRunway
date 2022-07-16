@@ -14,33 +14,40 @@
     /* create two equal columns*/
     .column {
     padding: 20px;
-    flex: 50%;
+    flex-direction: column;
+    display: inline-flex;
+    width: 50%;
+    flex-grow:1;
     }
 
     .row {
     display: flex;
+    flex-direction: row;
+    width:100%;
     }
+
     </style>
 </head>
 
 <body>
 
-    <h1>Swap</h1>
-    
+    <h1>The Swap</h1>
+    <br>
     <div class="row">
-        <div class="column" style="background-color:;">
+        <div class="column">
             <h2>Your Clothing</h2>  
             <p>This is the piece of clothing you are offering in the swap</p>
             <img src= {{giving_image_url}} alt="Your clothing picture">
 
         </div>
 
-        <div class="column" style="background-color:;">
+        <div class="column">
             <h2>{{swappers_username}}'s Clothing</h2> {# need a username tag for the swapper#}
             <p>This is the piece of clothing you are getting in the swap</p>
-            <img src= {{getting_image_url}} alt="Your clothing picture">
+            <img src= {{getting_image_url}} alt="Their clothing picture">
         </div>
     </div>
+
     <div style="position: centre">
         <form method="post">
             <button name ="approved" type ="submit">Approve</button>
