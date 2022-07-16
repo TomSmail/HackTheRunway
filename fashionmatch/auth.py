@@ -17,10 +17,10 @@ def logout():
     session.pop('password', None)
 
 
-def isloggedin(f):
+def ensurelogin(f):
     @wraps(f)
     def wrap(*args, **kwargs):
-        if bool(session.get('username', False)):
-            return session.get('username', False)
-        return redirect(url_for('index'))
+        if bool(session.get('email', False)):
+            return session.get('email', False)
+        return redirect(url_for('auth_bp.login'))
     return wrap

@@ -15,26 +15,22 @@ def home():
         "account.jinja2",
     )
 
+
 @account_bp.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == 'GET':
-        
         return render_template(
             "register.jinja2",
         )
-
-        
     if request.method == 'POST':
         email = request.values.get('email')
         password = request.values.get('password')
         passwordhash = argon2.hash(password)
-
         db, cur = get_db()
         cur.execute('INSERT INTO "User" (email, passwordhash) VALUES (%s, %s);', (email, passwordhash))
+        # Session
+        session['email'] = email
+
         
-        #print(cur.fetchone())
-        
-        
-        print(passwordhash, password)
         return make_response("WORKS", 200)
 
