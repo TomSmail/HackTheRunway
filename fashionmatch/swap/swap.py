@@ -1,5 +1,10 @@
-from flask import Blueprint, make_response, url_for, redirect, request, render_template, flash, session
+from flask import Blueprint, Response, make_response, url_for, redirect, request, render_template, flash, session
+from flask import current_app as app
+import os
 from werkzeug.utils import secure_filename
+
+from fashionmatch.db import get_db
+
 
 swap_bp = Blueprint(
     "swap_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/sstatic'
@@ -24,13 +29,14 @@ def main():
     )
 
 
-@swap_bp.route("/addhasitem", methods=["GET", "POST"])
-def addhasitem():
+@swap_bp.route("/hasitem", methods=["GET", "POST"])
+def hasitem():
     if request.method == 'GET':
-        return render_template("add.jinja2")
+        return render_template("hasitem.jinja2")
     if request.method == 'POST':
         db, cur = get_db()
-
+        print(request.files)
+        file = request.files["image"]
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
@@ -46,13 +52,19 @@ def addhasitem():
         locationmade = request.values.get('locationmade')
 
         if 'file' not in request.files:
+<<<<<<< HEAD
             flash('No file part')
             return redirect(request.url)
 
         file = request.files['file']
+=======
+            # flash('No file part')
+            return Response("You need a file", status=301, mimetype='application/json')
+>>>>>>> 6defebfe3c9330d54a837312ea94b28ab446c2e3
 
-        #From the flask documentation
+        file = request.files['file']
 
+        # From the flask documentation
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
 
