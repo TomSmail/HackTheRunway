@@ -1,6 +1,9 @@
 from flask import Blueprint, make_response, url_for, redirect, request, render_template, flash, session
 from werkzeug.utils import secure_filename
 
+from fashionmatch.db import get_db
+
+
 swap_bp = Blueprint(
     "swap_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/sstatic'
 )
@@ -30,7 +33,7 @@ def hasitem():
         return render_template("hasitem.jinja2")
     if request.method == 'POST':
         db, cur = get_db()
-
+        file = request.files["image"]
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
