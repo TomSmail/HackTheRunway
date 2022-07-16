@@ -52,8 +52,9 @@ def hasitem():
         locationmade = request.values.get('locationmade')
 
         if 'image' not in request.files:
-            # flash('No file part')
             return Response("You need a file", status=301, mimetype='application/json')
+
+
 
         file = request.files['image']
 
@@ -62,22 +63,22 @@ def hasitem():
         # empty file without a filename.
 
 
-        cur.execute("""SELECT articleid FROM "Article" WHERE color='%s AND typeofclothing='%s AND pricerange=%s AND condition='%s;""",
+        cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                     (colour,typeOfItem,pricerange, condition))
         articles = cur.fetchall()
         if len(articles) != 0: #article already exists
             articleid = articles[0][0]
             userid = session['uid'];
-            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s, '%s,'%s,'%s,'%s);""",(userid,articleid,filename,cotton,locationmade))
+            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES (%s, %s,%s,%s,%s);""",(userid,articleid,filename,cotton,locationmade))
         else:
-            cur.execute("""INSERT INTO "Article"(color,typeofclothing,pricerange,condition) VALUES ('%s,'%s,%s,'%s);""",
+            cur.execute("""INSERT INTO "Article"(color,typeofclothing,pricerange,condition) VALUES (%s,%s,%s,%s);""",
                     (colour,typeOfItem,pricerange,condition))
-            cur.execute("""SELECT articleid FROM "Article" WHERE color='%s AND typeofclothing='%s AND pricerange=%s AND condition='%s;""",
+            cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                         (colour,typeOfItem,pricerange, condition))
             articles = cur.fetchall()
             articleid = articles[0][0]
             userid = session['uid'];
-            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s, '%s,'%s,'%s,'%s);""",(userid,articleid,filename,cotton,locationmade))
+            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES (%s, %s,%s,%s,%s);""",(userid,articleid,filename,cotton,locationmade))
 
         return redirect(url_for("home_bp.home"))
 
