@@ -14,7 +14,7 @@ leaderboard_bp = Blueprint(
 def home():
     # Fetch Highest Scoring Users
     db, cur = get_db()
-    cur.execute('SELECT  firstname, lastname FROM "User" ORDER BY points',)
+    cur.execute('SELECT  firstname, lastname, points FROM "User" ORDER BY points',)
     resp = cur.fetchall()
     print(resp)
     return render_template(
