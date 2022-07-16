@@ -12,31 +12,31 @@ CREATE TABLE "Tags" (
 );
 
 CREATE TABLE "Article" (
-	ArticleID SERIAL PRIMARY KEY,
-	Color VARCHAR(30),
-	TypeOfClothing VARCHAR(30),
+	ArticleID SERIAL PRIMARY KEY NOT NULL,
+	Color VARCHAR(30) NOT NULL,
+	TypeOfClothing VARCHAR(30) NOT NULL,
 	PriceRange INT, --categorised to discrete integers
 	Condition INT --categorised to discrete integers
 );
 
 CREATE TABLE "User_Has" (
-	HasID SERIAL PRIMARY KEY,
-	HasUserID INT REFERENCES "User"(UserID),
-	ArticleID INT REFERENCES "Article"(ArticleID)
+	HasID SERIAL PRIMARY KEY NOT NULL,
+	HasUserID INT REFERENCES "User"(UserID) ,
+	ArticleID INT REFERENCES "Article"(ArticleID) 
 );
 
 CREATE TABLE "User_Wants" (
-	WantsID SERIAL PRIMARY KEY,
-	WantsUserID INT REFERENCES "User"(UserID),
-	ArticleID INT REFERENCES "Article"(ArticleID)
+	WantsID SERIAL PRIMARY KEY NOT NULL,
+	WantsUserID INT REFERENCES "User"(UserID) ,
+	ArticleID INT REFERENCES "Article"(ArticleID) 
 );
 
 CREATE TABLE "Match_Article" (
-	MatchArticleID SERIAL PRIMARY KEY,
-	MatchID INT,
+	MatchArticleID SERIAL PRIMARY KEY NOT NULL,
+	MatchID INT NOT NULL,
 	HasID INT REFERENCES "User_Has"(HasID),
-	WantsID INT REFERENCES "User_Wants"(WantsID),
-	Status VARCHAR(10) 
+	WantsID INT REFERENCES "User_Wants"(WantsID) ,
+	Status VARCHAR(10) NOT NULL 
 );
 
 CREATE TABLE "User_Has_Tag" (

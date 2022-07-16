@@ -71,6 +71,7 @@ def register():
 
 
 @account_bp.route("/logout", methods=["GET"])
+@ensurelogin
 def logout():
     print("Logout")
     session.pop('email', None)

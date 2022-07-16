@@ -5,13 +5,13 @@ from flask import current_app, g
 from configparser import ConfigParser
 
 
-# def init_db():
-#     """Helper for init. Executes schema.sql"""
-#     db, cur = get_db()
-#     schema_path = os.path.join(os.getcwd(), 'sql/schema.sql')
-#     with current_app.open_resource(schema_path) as f:
-#         cur.execute(f.read())
-#     #return cur.fetchone()['version']  # DB Version
+def init_db():
+    """Helper for init. Executes schema.sql"""
+    db, cur = get_db()
+    schema_path = os.path.join(os.getcwd(), 'sql/schema.sql')
+    with current_app.open_resource(schema_path) as f:
+        cur.execute(f.read())
+     #return cur.fetchone()['version']  # DB Version
 
 
 def seed_db():
