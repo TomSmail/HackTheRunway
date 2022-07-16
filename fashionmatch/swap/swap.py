@@ -59,8 +59,8 @@ def hasitem():
         condition = request.values.get('condition') # actually string!
         cotton = request.values.get('cotton')
         locationmade = request.values.get('locationmade')
-        print(cotton)
-        print(locationmade)
+        # print(cotton)
+        # print(locationmade)
 
         cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                     (colour, typeOfItem, pricerange, condition))
