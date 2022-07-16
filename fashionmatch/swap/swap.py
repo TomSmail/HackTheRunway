@@ -52,15 +52,8 @@ def hasitem():
         locationmade = request.values.get('locationmade')
 
         if 'file' not in request.files:
-<<<<<<< HEAD
-            flash('No file part')
-            return redirect(request.url)
-
-        file = request.files['file']
-=======
             # flash('No file part')
             return Response("You need a file", status=301, mimetype='application/json')
->>>>>>> 6defebfe3c9330d54a837312ea94b28ab446c2e3
 
         file = request.files['file']
 
