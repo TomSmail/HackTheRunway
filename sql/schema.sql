@@ -17,7 +17,7 @@ CREATE TABLE "Article" (
 CREATE TABLE "User_Has" (
 	HasID SERIAL PRIMARY KEY,
 	HasUserID INT REFERENCES "User"(UserID),
-	ArticleID INT REFERENCES "Article"(ArticleID),
+	ArticleID INT REFERENCES "Article"(ArticleID)
 );
 
 CREATE TABLE "User_Wants" (
