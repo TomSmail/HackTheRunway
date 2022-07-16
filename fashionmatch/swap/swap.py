@@ -26,11 +26,11 @@ def main():
 
 
 
-@swap_bp.route("/hasitem", methods=["GET", "POST"])
-def add():
+@swap_bp.route("/additem", methods=["GET", "POST"])
+def additem():
     if request.method == 'GET':
         return render_template("add.jinja2")
-    elif request.method == 'POST':
+    if request.method == 'POST':
         db, cur = get_db()
 
         if file.filename == '':
@@ -64,7 +64,7 @@ def add():
         if len(articles) != 0: #article already exists
             articleid = articles[0][0]
             userid = session['uid'];
-            cur.execute("INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');",(userid,articleid,filename,cotton,locationmade))
+            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
         else:
             cur.execute("""INSERT INTO "Article"(color,typeofclothing,pricerange,condition) VALUES ('%s','%s',%s,'%s');""",
                     (colour,typeOfItem,pricerange,condition))
@@ -73,28 +73,14 @@ def add():
             articles = cur.fetchall()
             articleid = articles[0][0]
             userid = session['uid'];
-            cur.execute("INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');",(userid,articleid,filename,cotton,locationmade))
+            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
 
         return redirect(url_for("home_bp.home"))
+
 
 @swap_bp.route("/wantsitem", methods=["GET", "POST"])
 def add():
     if request.method == 'GET':
         return render_template("add.jinja2")
     elif request.method == 'POST':
-
-
-
-
-"""@swap_bp.route("/swap", methods=["GET", "POST"])
-def swap():
-    if request.method == "GET":
-        return render_template(
-            "swapping.jinja2",
-    )
-    elif request.method =="POST":
-        approved = request.values.get("approved") # if the user is happy with the swap they will send a bool
-        return approved
-        # NOT SURE WHAT TO RETURN
-        #return redirect(url_for("swap_bp.swapped"))
-"""
+        return render_template("add.jinja2")
