@@ -4,7 +4,8 @@ from fashionmatch.db import get_db
 
 
 leaderboard_bp = Blueprint(
-    "leaderboard_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/lstatic'
+    "leaderboard_bp", __name__, template_folder="templates",
+    static_folder="static", static_url_path='/lstatic'
 )
 
 
