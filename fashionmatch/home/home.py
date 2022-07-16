@@ -34,5 +34,4 @@ def home():
 
 @home_bp.route('/uploads/<path:filename>')
 def download_file(filename):
-    print("ok")
     return send_from_directory("../" + app.config['UPLOAD_FOLDER'], filename, as_attachment=False)

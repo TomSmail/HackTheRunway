@@ -30,7 +30,6 @@ def login():
         email = request.values.get('email')
         password = request.values.get('password')
         passwordhash = argon2.hash(password)
-        print(email, passwordhash)
         # DB
         db, cur = get_db()
         # The comma is very important
@@ -85,6 +84,5 @@ def register():
 @account_bp.route("/logout", methods=["GET"])
 @ensurelogin
 def logout():
-    print("Logout")
     session.pop('email', None)
     return redirect(url_for("home_bp.home"))
