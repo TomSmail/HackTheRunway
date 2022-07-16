@@ -24,6 +24,11 @@ def allowed_file(filename):
 @swap_bp.route("/", methods=["GET"])
 @ensurelogin
 def main():
+    return True
+
+@app.route('/<id:int>')  
+@ensurelogin
+def swapid(id):
     return render_template(
         "swap.jinja2",
         PFPs=["https://avatars.githubusercontent.com/u/37508609?s=64&v=4",
