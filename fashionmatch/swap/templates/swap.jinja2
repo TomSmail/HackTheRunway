@@ -37,24 +37,87 @@
     <div style="text-align:right">
     </div>
 
-    {% for PFP in PFPs %}
-        <div class="row">
-            <img src="{{PFP}}" class="PFP" />
+    <div class="row">
+
+        <div class="column" style="justify-content:center;text-align:center;align-items:center;">
+
+            <svg width="100" height="100">
+
+            <defs>
+                <marker id="arrow" markerWidth="13" markerHeight="13" refx="2" refy="6" orient="auto">
+                    <path d="M2,2 L2,11 L10,6 L2,2" style="fill:black;" />
+                </marker>
+            </defs>
+
+            <path d="M0,50 L90,50"
+                stroke-dasharray="5,5" style="stroke:black; stroke-width: 1.25px; fill: none;
+                    marker-end: url(#arrow);"
+            />
+
+            </svg>            
         </div>
+
+    {% for PFP in PFPs %}
+        <div class="column" style="justify-content:center;text-align:center;align-items:center;">
+            <img src="{{PFP}}" class="PFP" />
+            <p>{{Names[loop.index-1]}}</p>
+        </div>
+        {% if loop.last == False%}
+
+        <div class="column" style="justify-content:center;text-align:center;align-items:center;">
+
+            <svg width="100" height="100">
+
+            <defs>
+                <marker id="arrow" markerWidth="13" markerHeight="13" refx="2" refy="6" orient="auto">
+                    <path d="M2,2 L2,11 L10,6 L2,2" style="fill:black;" />
+                </marker>
+            </defs>
+
+            <path d="M0,50 L80,50"
+                style="stroke:black; stroke-width: 1.25px; fill: none;
+                    marker-end: url(#arrow);"
+            />
+
+            </svg>            
+        </div>
+        {% endif%}
+
     {% endfor %}
+
+        <div class="column" style="justify-content:center;text-align:center;align-items:center;">
+
+            <svg width="100" height="100">
+
+            <defs>
+                <marker id="arrow" markerWidth="13" markerHeight="13" refx="2" refy="6" orient="auto">
+                    <path d="M2,2 L2,11 L10,6 L2,2" style="fill:black;" />
+                </marker>
+            </defs>
+
+            <path d="M0,50 L90,50"
+                stroke-dasharray="5,5" style="stroke:black; stroke-width: 1.25px; fill: none;
+                    marker-end: url(#arrow);"
+            />
+
+            </svg>            
+        </div>
+
+    </div>
+
 
 
 
     <div class="row">
         <div class="column">
-            <h2>Your Clothing</h2>  
+            <h2>You give to {{receiver_uname}}</h2>  
             <p>This is the piece of clothing you are offering in the swap</p>
             <img src= {{giving_image_url}} alt="Your clothing picture">
 
         </div>
 
         <div class="column">
-            <h2>{{swappers_username}}'s Clothing</h2> {# need a username tag for the swapper#}
+            <h2>You get from {{sender_uname}}</h2> {# need a username tag for the swapper#}
             <p>This is the piece of clothing you are getting in the swap</p>
             <img src= {{getting_image_url}} alt="Their clothing picture">
         </div>
