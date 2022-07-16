@@ -14,7 +14,7 @@ def home():
     # Fetch Highest Scoring Users
     db, cur = get_db()
     cur.execute('SELECT  firstname, lastname FROM "User" ORDER BY points',)
-    resp = cur.fetchall()  
+    resp = cur.fetchall()
     print(resp)
     return render_template(
         "leaderboard.jinja2",
