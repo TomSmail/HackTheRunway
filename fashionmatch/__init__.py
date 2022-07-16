@@ -18,7 +18,7 @@ def init_app():
         app.config.from_object(config.DebugConfig)
 
         from . import db # noqa
-        db.init_db() # ONLY run this to create the schema afresh
+        # db.init_db() # ONLY run this to create the schema afresh
         # Register Blueprints
         app.register_blueprint(home.home_bp)
         app.register_blueprint(account.account_bp, url_prefix="/account")
