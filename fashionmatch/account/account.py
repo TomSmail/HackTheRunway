@@ -30,8 +30,9 @@ def register():
         passwordhash = argon2.hash(password)
 
         db, cur = get_db()
-        cur.execute('INSERT INTO "User" ("Email", "PasswordHash") VALUES (%s, %s);', (email, passwordhash))
-        print(cur.fetchone())
+        cur.execute('INSERT INTO "User" (email, passwordhash) VALUES (%s, %s);', (email, passwordhash))
+        
+        #print(cur.fetchone())
         
         
         print(passwordhash, password)
