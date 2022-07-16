@@ -48,6 +48,7 @@ def addhasitem():
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
+
         file = request.files['file']
 
         #From the flask documentation
@@ -62,7 +63,7 @@ def addhasitem():
         if len(articles) != 0: #article already exists
             articleid = articles[0][0]
             userid = session['uid'];
-            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
+            cur.execute("""INSERT INTO "User_Has" (hasuserid,articleid,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
         else:
             cur.execute("""INSERT INTO "Article"(color,typeofclothing,pricerange,condition) VALUES ('%s','%s',%s,'%s');""",
                     (colour,typeOfItem,pricerange,condition))
