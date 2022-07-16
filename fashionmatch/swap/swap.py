@@ -24,8 +24,8 @@ def main():
     )
 
 
-@swap_bp.route("/hasitem", methods=["GET", "POST"])
-def addHasItem():
+@swap_bp.route("/addhasitem", methods=["GET", "POST"])
+def addhasitem():
     if request.method == 'GET':
         return render_template("add.jinja2")
     if request.method == 'POST':
@@ -71,7 +71,7 @@ def addHasItem():
             articles = cur.fetchall()
             articleid = articles[0][0]
             userid = session['uid'];
-            cur.execute("""INSERT INTO 'User_Has' (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
+            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
 
         return redirect(url_for("home_bp.home"))
 
