@@ -1,5 +1,8 @@
-from flask import Blueprint, make_response, url_for, redirect, request, render_template, flash, session
 from fashionmatch.db import get_db
+
+from passlib.hash import argon2
+from flask import Blueprint, make_response, url_for, redirect, request, render_template, flash, session
+
 
 account_bp = Blueprint(
     "account_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/astatic', 
@@ -15,17 +18,23 @@ def home():
 @account_bp.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == 'GET':
-        db, cur = get_db()
-        cur.execute('SELECT * FROM usr WHERE id = (%s);', (1,))
-        print(cur.fetchone())
+        
         return render_template(
             "register.jinja2",
         )
 
         
     if request.method == 'POST':
-        username = request.values.get('email')
+        email = request.values.get('email')
         password = request.values.get('password')
-        print(username, password)
+        passwordhash = argon2.hash(password)
+
+        db, cur = get_db()
+        cur.execute('INSERT INTO "User" (email, passwordhash) VALUES (%s, %s);', (email, passwordhash))
+        
+        #print(cur.fetchone())
+        
+        
+        print(passwordhash, password)
         return make_response("WORKS", 200)
 
