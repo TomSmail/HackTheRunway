@@ -7,11 +7,11 @@
 
 <div id="swapChoices" style="background-color:#98fb98;">
     <h3>I have...</h3>
-    <table id="chooseTable"> 
+    <table id="IHave"> 
         <form method="post" enctype="multipart/form-data">
     </form>
         <tr> <th>Type of clothing</th> <th>Colour</th> <th>Price Range</th> <th>Condition</th> <th>Upload Photo</th> </tr>
-        <tr id="singleRow" hidden> 
+        <tr id="singleRowIHave" hidden> 
             <td>
                 <div class="customSelect">
                     <select name="type">
@@ -54,22 +54,68 @@
         </tr>
     </table>
     
-    <button class="addGarment" onclick="addRow()" >Add Garment</button>
+    <button class="addGarment" onclick="addRow('IHave')" >Add Garment</button>
 
     <h3>I am looking for...</h3>
+    <table id="IWant"> 
+        <form method="post" enctype="multipart/form-data">
+    </form>
+        <tr> <th>Type of clothing</th> <th>Colour</th> <th>Price Range</th> <th>Condition</th> </tr>
+        <tr id="singleRowIWant" hidden> 
+            <td>
+                <div class="customSelect">
+                    <select name="type">
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="shorts">Shorts</option>
+                        <option value="dress">Dress</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <select name="colour">
+                    <option value="tshirt">Blue</option>
+                    <option value="shorts">Yellow</option>
+                    <option value="dress">Orange</option>
+                    <option value="dress">Red</option>
+                    <option value="dress">Green</option>
+                </select>
+            </td>
+            <td>
+                <select name="pricerange">
+                    <option value="£">£</option>
+                    <option value="££">££</option>
+                    <option value="£££">£££</option>
+                </select>
+            </td>            
+
+            <td>
+                <select name="condition">
+                    <option value="asnew">Blue</option>
+                    <option value="somewear">Yellow</option>
+                    <option value="heavilyworm">Orange</option>
+                </select>
+            </td>
+
+        </tr>
+    </table>
+    <button class="addGarment" onclick="addRow('IWant')" >Add Garment</button>
+
+
 </div>
 
 <button id="save" onclick="">Save</button>
 
 <script>
 
-function addRow() {
-    var clone = document.getElementById("singleRow").cloneNode(true)
+function addRow(idOfTable) {
+    var clone = document.getElementById("singleRow"+idOfTable).cloneNode(true)
     clone.hidden = false;
-    document.getElementById("chooseTable").appendChild(clone)
+    document.getElementById(idOfTable).appendChild(clone)
 }
 
-addRow();
+addRow("IHave");
+addRow("IWant")
 
 </script>
 
