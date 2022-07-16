@@ -2,7 +2,7 @@ CREATE TABLE "User" (
 	UserID SERIAL PRIMARY KEY NOT NULL,
 	Email VARCHAR(100) UNIQUE NOT NULL,
 	PasswordHash VARCHAR(512) NOT NULL,
-	Points Int,
+	Points INT,
 	Address TEXT,
 	ProfilePictureLink Text
 );
