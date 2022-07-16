@@ -33,7 +33,8 @@
 
     {% for item in response %}
     <div class="half box item">
-        <span>Image, id</span>&nbsp;<span>{{ item }}</span>
+        <span>{{ item }}</span>
+        <p>{{item.typeofclothing}}</p>
     </div>
     
     {% endfor %}
