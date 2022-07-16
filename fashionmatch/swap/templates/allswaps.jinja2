@@ -16,13 +16,13 @@
 
         {% for item in items %}
             <tr>
-                <td>{{ item }}</td>
+                <td> {{ 'OneStatus' if item.status==1 else 'ZeroStatus' }}</td>
+
                 <img src="{{ url_for('home_bp.download_file', filename=item.imageofitem) }} " alt="img" width="50%" >
 
             </tr>
         {% endfor %}
 
     {% endif %}
-
 
 {% endblock %}
