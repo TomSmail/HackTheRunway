@@ -1,18 +1,55 @@
 div#maincontainer{
     display: flex;
     width: 100%;
-    align-items: stretch;
     flex-flow: row wrap;
-    place-content: stretch flex-start;
+    box-sizing: border-box;
+    padding-top: 25px;
+    
 }
 div.box{
-    padding: 5px;
-    background-color: red;
-    /* border: 1px solid red; */
+    
+    outline-offset: -5px;
+    box-sizing: border-box;
+    padding: 20px
+
+
 }
 div.full{
-    width: 100%;
+    width: 95%;
+    margin: 1% 2.5%;
 }
 div.half{
-    width: 50%;
+    width: 45%;
+    margin: 1% 2.5%;
 }
+
+div#alert{
+    color: white;
+    background-color: rgb(212, 71, 71);
+}
+div#add{
+    background-image: url("https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+    height: 90px;
+}
+
+
+div#viewall{
+    background-image: url("https://images.unsplash.com/photo-1542060748-10c28b62716f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+    height: 90px;
+}
+
+span#viewallspan{
+    color: white;
+    font-size: 25px;
+}
+
+span#addspan{
+    color: white;
+    font-size: 25px;
+}
+
+
+div.item{
+    border: 1px solid black;
+}
+

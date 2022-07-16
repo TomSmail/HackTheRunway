@@ -10,27 +10,30 @@
 <div id="maincontainer">
 
     {% if true %}
-    <div class="full box">
-        <span>SWAP FOUND - WIDE</span>
+    <div class="full box" id="alert"">
+        <span>1 NEW SWAP HAS HAPPENED</span>
     </div>
     {% endif %}
 
-    <div class="half box">
-        <span>half</span>
+    <div class="half box"  id="add">
+        <span id="addspan">Add Item +</span>
     </div>
-    <div class="half box">
-        <span>half</span>
-    </div>
-    <div class="half box">
-        <span>half</span>
+    <div class="half box"  id="viewall">
+        <span id="viewallspan">View all Public items</span>
     </div>
 
 
+    <div class="full box listings">
+        <span>Your listed items:</span>
+    </div>
 
-Add Item
 
-Show Public items
-
+    {% for n in range(100) %}
+    <div class="half box item">
+        <span>Image, id</span>&nbsp;<span>{{ n }}</span>
+    </div>
+    
+{% endfor %}
 
 
 
