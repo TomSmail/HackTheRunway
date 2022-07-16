@@ -1,16 +1,22 @@
 select {
-    background-color: grey;
-    color: white;
+    background-color: rgb(210, 210, 210);
+    color: black;
     padding: 8px;
     font-size: 16px;
     border-radius: 3px;
     cursor: pointer;
 }
 input{
-    background-color: grey;
-    color: white;
+    background-color: rgb(210, 210, 210);
+    color: black;
     padding: 8px;
     font-size: 16px;
     border-radius: 3px;
     cursor: pointer; 
+}
+
+input[type="submit"] {
+    background-color: #f497ec; color: black;  border-color: transparent;
+    padding: 10px;
+    border-radius: 3px;
 }
