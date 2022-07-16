@@ -6,6 +6,11 @@ CREATE TABLE "User" (
 	ProfilePictureLink Text
 );
 
+CREATE TABLE "Tags" (
+	TagID SERIAL PRIMARY KEY,
+	Word VARCHAR(30)
+);
+
 CREATE TABLE "Article" (
 	ArticleID SERIAL PRIMARY KEY,
 	Color VARCHAR(30),
@@ -17,7 +22,7 @@ CREATE TABLE "Article" (
 CREATE TABLE "User_Has" (
 	HasID SERIAL PRIMARY KEY,
 	HasUserID INT REFERENCES "User"(UserID),
-	ArticleID INT REFERENCES "Article"(ArticleID),
+	ArticleID INT REFERENCES "Article"(ArticleID)
 );
 
 CREATE TABLE "User_Wants" (
@@ -40,10 +45,7 @@ CREATE TABLE "User_Has_Tag" (
 );
 
 
-CREATE TABLE "Tags" (
-	TagID SERIAL PRIMARY KEY,
-	Word VARCHAR(30)
-);
+
 
 
 SELECT * FROM information_schema.tables WHERE table_schema = 'public';
