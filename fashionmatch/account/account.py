@@ -19,7 +19,6 @@ def home():
     )
 
 @account_bp.route("/login", methods=["GET"])  #! ADD POST!!
-@ensurelogin
 def login():
     return render_template(
         "login.jinja2",
