@@ -3,12 +3,12 @@ from fashionmatch.auth import ensurelogin
 from fashionmatch.db import get_db
 
 
-lb_bp = Blueprint(
+leaderboard_bp = Blueprint(
     "leaderboard_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/lstatic'
 )
 
 
-@lb_bp.route("/", methods=["GET"])
+@leaderboard_bp.route("/", methods=["GET"])
 @ensurelogin
 def home():
     # Fetch Highest Scoring Users
