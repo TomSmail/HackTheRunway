@@ -24,8 +24,19 @@ def allowed_file(filename):
 @swap_bp.route("/", methods=["GET"])
 @ensurelogin
 def main():
+    amount = len(cur.fetchall())
 
-<<<<<<< HEAD
+    db, cur = get_db()
+    uid = (session.get("uid", None))
+    cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID WHERE HasUserID=%s;', (str(uid),))
+    items = cur.fetchall()
+    
+    return render_template(
+        "allswaps.jinja2",
+        number = len(items),
+        items=items
+    )
+
 
 
 @swap_bp.route('/<id>')  
@@ -65,40 +76,21 @@ def swapid(id):
     #     else:
     #         participantCounts.insert(item["userid"])
 
-    
-
-
-    amount = len(cur.fetchall())
-
-=======
-    db, cur = get_db()
-    uid = (session.get("uid", None))
-    cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID WHERE HasUserID=%s;', (str(uid),))
-    items = cur.fetchall()
-    
-    return render_template(
-        "allswaps.jinja2",
-        number = len(items),
-        items=items
-    )
-
-
-@swap_bp.route('/<id>')
-@ensurelogin
-def swapid(id):
-    # cur
->>>>>>> 3f441bcbf14bc4ab027834a0d3f9c9f65a54d0eb
-    return render_template(
-        "swap.jinja2",
-        PFPs=pfps,
-        Names=names,
-        receiver_uname=receiver_uname,
-        sender_uname=sender_uname,
-        giving_image_url=receiver_image,
-        getting_image_url=sender_image,
-        locations=[{"lat": 51.5, "long": -0.09},
-                   {"lat": 29.7, "long": -5.0}, {"lat": 20.0, "long": 5.0}]
-    )
+# @swap_bp.route('/<id>')
+# @ensurelogin
+# def swapid(id):
+#     # cur
+#     return render_template(
+#         "swap.jinja2",
+#         PFPs=pfps,
+#         Names=names,
+#         receiver_uname=receiver_uname,
+#         sender_uname=sender_uname,
+#         giving_image_url=receiver_image,
+#         getting_image_url=sender_image,
+#         locations=[{"lat": 51.5, "long": -0.09},
+#                    {"lat": 29.7, "long": -5.0}, {"lat": 20.0, "long": 5.0}]
+#     )
 
     # return render_template(
     #     "swap.jinja2",
