@@ -1,8 +1,51 @@
 {% extends "base.jinja2" %}
 
+{# This page is for confirming the swap between people#}
+
 {% block main %}
 
-swap main
+
+<head>
+    <style>
+    * {
+    box-sizing: border-box;
+    }
+
+    /* create two equal columns*/
+    .column {
+    padding: 20px;
+    flex: 50%;
+    }
+
+    .row {
+    display: flex;
+    }
+    </style>
+</head>
+
+<body>
+
+    <h1>Swap</h1>
+    
+    <div class="row">
+        <div class="column" style="background-color:;">
+            <h2>Your Clothing</h2>  
+            <p>This is the piece of clothing you are offering in the swap</p>
+            <img src= {{giving_image_url}} alt="Your clothing picture">
+
+        </div>
+
+        <div class="column" style="background-color:;">
+            <h2>{{swappers_username}}'s Clothing</h2> {# need a username tag for the swapper#}
+            <p>This is the piece of clothing you are getting in the swap</p>
+            <img src= {{getting_image_url}} alt="Your clothing picture">
+        </div>
+    </div>
+    <div style="position: centre">
+        <form method="post">
+            <button name ="approved" type ="submit">Approve</button>
+        </form> 
+    <div>
+</body>
 
 {% endblock %}
-
