@@ -17,7 +17,7 @@ CREATE TABLE "Article" (
 CREATE TABLE "User_Has" (
 	HasID SERIAL PRIMARY KEY,
 	HasUserID INT REFERENCES "User"(UserID),
-	ArticleID INT REFERENCES "Article"(ArticleID)
+	ArticleID INT REFERENCES "Article"(ArticleID),
 );
 
 CREATE TABLE "User_Wants" (
@@ -33,6 +33,18 @@ CREATE TABLE "Match_Article" (
 	WantsID INT REFERENCES "User_Wants"(WantsID),
 	Status VARCHAR(10) 
 );
+
+CREATE TABLE "User_Has_Tag" (
+	HasID INT REFERENCES "User_Has"(HasID),
+	TagID INT REFERENCES "Tags"(TagID)
+);
+
+
+CREATE TABLE "Tags" (
+	TagID SERIAL PRIMARY KEY,
+	Word VARCHAR(30)
+);
+
 
 SELECT * FROM information_schema.tables WHERE table_schema = 'public';
 
