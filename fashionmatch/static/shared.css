@@ -88,12 +88,6 @@ th,td {
     display: flex;
 }
 
-<<<<<<< HEAD
-.PFP {
-    width: 30px;
-    height: 30px;
-}
-=======
 .button {
     text-align: center;
     text-decoration: none;
@@ -111,4 +105,8 @@ th,td {
 
     border: rgb(73, 73, 73);
 }
->>>>>>> 13ee09ba4cb7563801241f579dfe513959f76409
+
+.PFP {
+    width: 30px;
+    height: 30px;
+}
