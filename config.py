@@ -9,9 +9,9 @@ class Config():
     SECRET_KEY = 'make this more secret'
     FLASK_SECRET = SECRET_KEY
     DB_HOST = 'database' # do this later
-    SQLALCHEMY_DATABASE_URI = 'sqlite://temp/test.db'
 
 class DebugConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
     DB_HOST = 'my.production.database'
+

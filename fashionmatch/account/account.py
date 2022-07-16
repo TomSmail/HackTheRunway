@@ -24,3 +24,4 @@ def register():
         password = request.values.get('password') 
         print(username,password)
         return make_response("WORKS", 200)
+
