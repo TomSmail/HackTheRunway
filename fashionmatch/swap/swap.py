@@ -24,9 +24,10 @@ def allowed_file(filename):
 @swap_bp.route("/", methods=["GET"])
 @ensurelogin
 def main():
+    # List all swaps here
     return True
 
-@app.route('/<id:int>')  
+@app.route('/<id:int>')
 @ensurelogin
 def swapid(id):
     return render_template(
