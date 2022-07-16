@@ -39,7 +39,7 @@
 
         <ul>
             <li>
-
+                <a  href="{{url_for('leaderboard_bp.home')}}">Leaderboard</a>
                 {% if session['email'] %}
                     <span>{{session['email']}}</span>
                     <a class="rightlink" href="{{url_for('account_bp.logout')}}">Logout</a>

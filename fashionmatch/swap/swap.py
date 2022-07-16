@@ -4,6 +4,8 @@ import os
 from werkzeug.utils import secure_filename
 
 from fashionmatch.db import get_db
+from fashionmatch.auth import ensurelogin
+
 
 
 swap_bp = Blueprint(
@@ -19,6 +21,7 @@ def allowed_file(filename):
 
 
 @swap_bp.route("/", methods=["GET"])
+@ensurelogin
 def main():
     return render_template(
         "swap.jinja2",
@@ -33,6 +36,7 @@ def main():
 
 
 @swap_bp.route("/hasitem", methods=["GET", "POST"])
+@ensurelogin
 def hasitem():
     if request.method == 'GET':
         return render_template("hasitem.jinja2")
@@ -82,6 +86,7 @@ def hasitem():
 
 
 @swap_bp.route("/wantitem", methods=["GET", "POST"])
+@ensurelogin
 def wantitem():
     if request.method == 'GET':
         return render_template("wantitem.jinja2")

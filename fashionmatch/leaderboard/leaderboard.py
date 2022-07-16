@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, session
-from fashionmatch.auth import ensurelogin
 from fashionmatch.db import get_db
 
 
@@ -10,7 +9,6 @@ leaderboard_bp = Blueprint(
 
 
 @leaderboard_bp.route("/", methods=["GET"])
-@ensurelogin
 def home():
     # Fetch Highest Scoring Users
     db, cur = get_db()
