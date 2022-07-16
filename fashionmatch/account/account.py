@@ -14,6 +14,7 @@ account_bp = Blueprint(
 @account_bp.route("/", methods=["GET"])
 @ensurelogin
 def home():
+    return redirect(url_for("home_bp.home"))
     return render_template(
         "account.jinja2",
     )
@@ -43,7 +44,7 @@ def login():
             return redirect(url_for("account_bp.login"))
         else:
             session['email'] = email
-            return redirect(url_for("account_bp.home"))
+            return redirect(url_for("home_bp.home"))
 
 
 @account_bp.route("/register", methods=["GET", "POST"])
@@ -70,7 +71,7 @@ def register():
         session['email'] = email
         session['uid'] = cur.fetchall()[0][0];
         # return
-        return redirect(url_for("account_bp.home"))
+        return redirect(url_for("home_bp.home"))
 
 
 @account_bp.route("/logout", methods=["GET"])
