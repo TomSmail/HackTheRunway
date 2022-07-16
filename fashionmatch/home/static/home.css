@@ -63,3 +63,12 @@ a {
     cursor: pointer;
 
 }
+
+
+p{
+    text-align: left;
+}
+
+table.datatable{
+    width: 90%;
+}

@@ -100,7 +100,7 @@ def wantitem():
         colour = request.values.get('colour')
         typeOfItem = request.values.get('type')
         pricerange = request.values.get('pricerange')
-        condition = request.values.get('condition') # actually string!
+        condition = request.values.get('condition')  # actually string!
         
         cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                     (colour, typeOfItem, pricerange, condition))
