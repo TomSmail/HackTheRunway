@@ -6,7 +6,6 @@ body{
     margin: 0px;
 }
 
-
 nav.navbar{
     vertical-align: middle;
     padding: 8px;
@@ -47,12 +46,30 @@ div#spacer{
     flex-grow: 1;
 }
 
-main { 
+div#vertSpacer{
+    flex-grow: 1;
+}
+
+main { /* DONT LIKE THIS - NEED HELP */
+    /*display: flex;*/
+    text-align:center;
+    width:100%;
+    flex-direction: column;
     position: absolute;
-    width: 100%;
+    /*max-width: 60em;*/
+    min-width: 45em;
     margin: 0 auto;
     padding: 0 2em;
     z-index: 1;
     top: 7%;
 }
 
+
+table {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.flex-outer {
+    display: flex;
+}
