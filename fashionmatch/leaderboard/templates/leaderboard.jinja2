@@ -1,0 +1,12 @@
+{% extends "base.jinja2" %}
+
+{% block main %}
+
+    <h2> Leaderboard </h2>
+
+    <div class = "center">
+        {% for item in response %}
+            <p>{{item["firstname"]}} {{item["lastname"]}}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

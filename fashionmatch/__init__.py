@@ -4,6 +4,7 @@ from flask import Flask
 from .home import home
 from .account import account
 from .swap import swap
+from .leaderboard import leaderboard
 
 import config
 
@@ -24,6 +25,7 @@ def init_app():
         app.register_blueprint(home.home_bp)
         app.register_blueprint(account.account_bp, url_prefix="/account")
         app.register_blueprint(swap.swap_bp, url_prefix="/swap")
+        app.register_blueprint(leaderboard.leaderboard_bp, url_prefix="/leaderboard")
 
         # engine = create_engine(os.environ["DATABASE_URL"])
         # conn = engine.connect()
