@@ -79,9 +79,9 @@ def hasitem():
         return redirect(url_for("home_bp.home"))
 
 
-@swap_bp.route("/wantsitem", methods=["GET", "POST"])
-def add():
+@swap_bp.route("/wantitem", methods=["GET", "POST"])
+def wantitem():
     if request.method == 'GET':
-        return render_template("add.jinja2")
+        return render_template("wantitem.jinja2")
     elif request.method == 'POST':
-        return render_template("add.jinja2")
+        return render_template("wantitem.jinja2")

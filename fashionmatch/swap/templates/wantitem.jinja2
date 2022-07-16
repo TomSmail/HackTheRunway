@@ -1,0 +1,70 @@
+{% extends "base.jinja2" %}
+
+{# This page is for confirming the swap between people#}
+
+{% block extrastyles %}<link rel="stylesheet" href="{{url_for('swap_bp.static', filename='item.css')}}">{% endblock %}
+
+
+{% block main %}
+
+<h2>Want item</h2>
+
+
+<form method="POST" enctype="multipart/form-data">
+  <table id="IWant"> 
+          <tr> <th>Type of clothing</th> <th>Colour</th> <th>Price Range</th> <th>Condition</th>  <th>Is Cotton</th> <th>Country of Origin</th>  </tr>
+        <tr id="singleRowIWant" > 
+            <td>
+                <div class="customSelect">
+                    <select name="type">
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="shorts">Shorts</option>
+                        <option value="dress">Dress</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <select name="colour">
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="orange">Orange</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                </select>
+            </td>
+            <td>
+                <select name="pricerange">
+                    <option value="1">£</option>
+                    <option value="2">££</option>
+                    <option value="3">£££</option>
+                </select>
+            </td>            
+
+            <td>
+                <select name="condition">
+                    <option value="1">As New</option>
+                    <option value="2">Some wear</option>
+                    <option value="3">Heavily worn</option>
+                </select>
+            </td>
+
+            <td>
+              <input type="checkbox">
+            </td>
+
+            <td>
+              <input type="text">
+            </td>
+
+
+        </tr>
+    </table>
+
+  <input type="submit" value="Submit" class="btn">
+</form> 
+
+
+
+
+{% endblock %}
