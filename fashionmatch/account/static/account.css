@@ -24,7 +24,7 @@ input[type=submit]{ /*green submit button*/
     border-radius:10px;
     width: 100%;
     margin-top: 10px;
-    background-color: palegreen;
+    background-color: #f497ec;
   }
   .centre{
     vertical-align: center;
