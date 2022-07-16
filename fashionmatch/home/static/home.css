@@ -26,6 +26,7 @@ div.half {
 div#alert {
     color: white;
     background-color: rgb(212, 71, 71);
+    font-weight: 700;
 }
 
 div#add {
@@ -43,6 +44,9 @@ div.withlink {
     align-items: center;
     height: 140px;
     justify-content: center;
+    filter: grayscale(70%) ; 
+
+
 }
 
 
