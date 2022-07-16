@@ -1,18 +1,24 @@
 div#maincontainer{
     display: flex;
     width: 100%;
-    align-items: stretch;
     flex-flow: row wrap;
-    place-content: stretch flex-start;
+    box-sizing: border-box;
+    
 }
 div.box{
-    padding: 5px;
     background-color: red;
-    /* border: 1px solid red; */
+    border: 1px solid black;
+    outline-offset: -5px;
+    box-sizing: border-box;
+    padding: 20px
+
+
 }
 div.full{
-    width: 100%;
+    width: 95%;
+    margin: 1% 2.5%;
 }
 div.half{
-    width: 50%;
+    width: 45%;
+    margin: 1% 2.5%;
 }
