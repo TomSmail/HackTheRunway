@@ -26,9 +26,10 @@ def allowed_file(filename):
 def main():
     return True
 
-@app.route('/<id:int>')  
+@swap_bp.route('/<id>')  
 @ensurelogin
 def swapid(id):
+    #cur  
     return render_template(
         "swap.jinja2",
         PFPs=["https://avatars.githubusercontent.com/u/37508609?s=64&v=4",
@@ -39,6 +40,14 @@ def swapid(id):
         locations=[{"lat": 51.5, "long": -0.09},
                    {"lat": 29.7, "long": -5.0}, {"lat": 20.0, "long": 5.0}]
     )
+
+# CREATE TABLE "Match_Article" (
+# 	MatchArticleID SERIAL PRIMARY KEY NOT NULL,
+# 	MatchID INT NOT NULL,
+# 	HasID INT REFERENCES "User_Has"(HasID),
+# 	WantsID INT REFERENCES "User_Wants"(WantsID) ,
+# 	Status VARCHAR(10) NOT NULL 
+# );
 
 
 @swap_bp.route("/hasitem", methods=["GET", "POST"])
