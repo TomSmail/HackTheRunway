@@ -1,29 +1,59 @@
 
 
 html,
+
 body{
     background-color: white;
     font-family: sans-serif;
     margin: 0px;
 }
 
-
 nav.navbar{
     padding: 8px;
+    background-color: #242424;
+    position: fixed;
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+    z-index: 3;
     display: flex;
-    height:30px;
-    border-bottom: 1px solid black;
+    height: 5%;
+    color: white;
 }
+
+nav.navbar a { /* link styling */
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 18px;
+ }
+
+ nav.navbar a:hover { /* cursor hovering */
+    color:rgb(180, 180, 180);
+ }
+
+nav.navbar ul{ /* removes syling from list */
+    list-style: none;
+}
+
 span#title{
     font-size: 25px;
 }
-
 
 div#spacer{
     flex-grow: 1;
 }
 
-
+main { /* DONT LIKE THIS - NEED HELP */
+    display: flex;
+    position: absolute;
+    max-width: 60em;
+    min-width: 45em;
+    margin: 0 auto;
+    padding: 0 2em;
+    z-index: 1;
+    top: 7%;
+}
 
 
 

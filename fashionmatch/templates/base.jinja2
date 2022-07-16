@@ -2,14 +2,37 @@
 <html>
 
 <head>
+
     <link rel="stylesheet" href="{{url_for('static', filename='shared.css')}}">
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} - Swapify</title>
+    <link rel="shortcut icon" type="ico" href="favicon.ico"/>
 
 </head>
 
 <body>
 
+    <nav class = "navbar">
+
+        <img src="logo.png" class="miniimage">
+        
+        <div id="spacer"></div>
+
+        <h1>SWAPIFY</h1>
+
+        <div id="spacer"></div> {# Spaces out the header into columns with flex #}
+
+        <ul>
+            <li>
+                <a class="rightlink" href="#">Login</a>
+            </li> 
+        </ul>
+    </nav>
+    
+        
+
+{# original code #}
+<!--
     <nav class="navbar">
 
         <div id="leftnav">
@@ -20,8 +43,9 @@
         <a class="rightlink" href="#">login</a>
 
     </nav>
-
-    {% block main %}{% endblock %}
-
+-->
+    <main>
+        {% block main %}{% endblock %}
+    </main>
 </body>
 </html>
