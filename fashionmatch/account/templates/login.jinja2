@@ -1,0 +1,16 @@
+{% extends "base.jinja2" %}
+
+{% block main %}
+
+Register 
+
+<form method="POST">
+  <label for="email">email:</label><br>
+  <input type="text" id="email" name="email" ><br>
+  <label for="password">pw:</label><br>
+  <input type="password" id="password" name="password" ><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+
+{% endblock %}

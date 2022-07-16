@@ -1,6 +1,3 @@
-import os
-from sqlalchemy import create_engine, text
-
 
 #tick off received or not
 
@@ -10,9 +7,7 @@ from sqlalchemy import create_engine, text
 
 #show it to all users and get them all to agree
 
-def genGraph():
-  engine = create_engine(os.environ["DATABASE_URL"])
-  conn = engine.connect()
+def genGraph(conn):
 
   numUsers = len(conn.execute(text("SELECT * FROM Users")).fetchall())  
   edges = conn.execute(text("SELECT * FROM User_Has INNER JOIN User_Wants ON User_Has.ArticleID = User_Wants.ArticleID")).fetchall()
@@ -22,3 +17,4 @@ def genGraph():
     graph[int(row["User_Has"])].append(int(row["User_Wants"]))
   
   return graph
+
