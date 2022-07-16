@@ -88,7 +88,12 @@ th,td {
     display: flex;
 }
 
-.button {
+.PFP {
+    width: 30px;
+    height: 30px;
+}
+
+.btn{
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -99,14 +104,8 @@ th,td {
     border-radius: 4px;
 }
 
-.button:hover{
+.btn:hover{
     background-color: rgb(172, 172, 172); 
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-
-    border: rgb(73, 73, 73);
-}
-
-.PFP {
-    width: 30px;
-    height: 30px;
+    border-width: 2px;
 }

@@ -22,7 +22,7 @@ def seed_db():
         cur.execute(f.read())
 
 
-def get_config(filename="database.ini", section="postgresql"):
+def get_config(filename="database.ini", section="cockroach"):
     """Parses and gets database config from file"""
     parser = ConfigParser()
     parser.read(filename)
@@ -41,10 +41,10 @@ def get_config(filename="database.ini", section="postgresql"):
 def get_db():
     """Attempt to connect to database and attach to global app"""
     if ("db" not in g) or ("cur" not in g):
-       db_config = get_config()
-       g.db = psycopg2.connect(**db_config)  # db connection
-       g.db.autocommit = True
-       g.cur = g.db.cursor(cursor_factory=extras.DictCursor)  # operation cursor
+        db_config = get_config()
+        g.db = psycopg2.connect(**db_config)  # db connection
+        g.db.autocommit = True
+        g.cur = g.db.cursor(cursor_factory=extras.RealDictCursor)  # operation cursor
     return g.db, g.cur
 
 

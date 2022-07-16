@@ -18,7 +18,7 @@ def home():
         "account.jinja2",
     )
 
-@account_bp.route("/login", methods=["GET"])  #! ADD POST!!
+@account_bp.route("/login", methods=["GET","POST"])  #! ADD POST!!
 def login():
     if request.method == 'GET':
         return render_template(
@@ -28,12 +28,24 @@ def login():
         email = request.values.get('email')
         password = request.values.get('password')
         passwordhash = argon2.hash(password)
+        print(email,passwordhash)
         # DB
         db, cur = get_db()
-        cur.execute('SELECT userid FROM "User" WHERE email = %s AND passwordhash =%s;',
-                    (email, passwordhash))
-        i = cur.fetchone()
-        print(i)
+        cur.execute('SELECT passwordhash FROM "User" WHERE email = %s;', (email,)) # The comma is very important
+        resp = cur.fetchone()
+        if not resp:
+            return redirect(url_for("account_bp.login"))
+        pwhash = resp["passwordhash"]
+        if not argon2.verify(password, pwhash):           
+            return redirect(url_for("account_bp.login"))
+        else:
+            session['email'] = email
+            return redirect(url_for("account_bp.home"))
+   
+        #validate pw
+
+        
+
         
 
 @account_bp.route("/register", methods=["GET", "POST"])
@@ -59,7 +71,7 @@ def register():
 
 
 @account_bp.route("/logout", methods=["GET"])
-@ensurelogin
 def logout():
+    print("Logout")
     session.pop('email', None)
-    return redirect(url_for("account_bp.login"))
+    return redirect(url_for("home_bp.home"))
