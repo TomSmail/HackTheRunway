@@ -24,9 +24,15 @@
 
         <ul>
             <li>
-                <a class="rightlink" href="{{url_for('account_bp.login')}}">Login</a>
-                <a class="rightlink" href="{{url_for('account_bp.register')}}">Register</a>
-                <a class="rightlink" href="{{url_for('account_bp.logout')}}">Logout</a>
+
+                {% if session['email'] %}
+                    <span>{{session['email']}}</span>
+                    <a class="rightlink" href="{{url_for('account_bp.logout')}}">Logout</a>
+                {% else %}
+                    <a class="rightlink" href="{{url_for('account_bp.login')}}">Login</a>
+                    <a class="rightlink" href="{{url_for('account_bp.register')}}">Register</a>
+                {% endif %}
+
             </li> 
         </ul>
     </nav>
