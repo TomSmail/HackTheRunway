@@ -20,9 +20,21 @@ def home():
 
 @account_bp.route("/login", methods=["GET"])  #! ADD POST!!
 def login():
-    return render_template(
-        "login.jinja2",
-    )
+    if request.method == 'GET':
+        return render_template(
+            "login.jinja2",
+        )
+    if request.method == 'POST':
+        email = request.values.get('email')
+        password = request.values.get('password')
+        passwordhash = argon2.hash(password)
+        # DB
+        db, cur = get_db()
+        cur.execute('SELECT userid FROM "User" WHERE email = %s AND passwordhash =%s;',
+                    (email, passwordhash))
+        i = cur.fetchone()
+        print(i)
+        
 
 @account_bp.route("/register", methods=["GET", "POST"])
 def register():
@@ -33,16 +45,21 @@ def register():
     if request.method == 'POST':
         email = request.values.get('email')
         password = request.values.get('password')
+        # HASHING
         passwordhash = argon2.hash(password)
+        # DB
         db, cur = get_db()
-        cur.execute('INSERT INTO "User" (email, passwordhash) VALUES (%s, %s);', (email, passwordhash))
+        cur.execute('INSERT INTO "User" (email, passwordhash) VALUES (%s, %s);',
+                    (email, passwordhash))
+
         # Session
         session['email'] = email
         # return
-        return make_response("WORKS", 200)
+        return redirect(url_for("account_bp.home"))
 
 
 @account_bp.route("/logout", methods=["GET"])
+@ensurelogin
 def logout():
     session.pop('email', None)
     return redirect(url_for("account_bp.login"))
