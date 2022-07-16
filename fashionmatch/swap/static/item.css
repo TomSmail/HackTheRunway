@@ -1,0 +1,16 @@
+select {
+    background-color: grey;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+input{
+    background-color: grey;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer; 
+}
