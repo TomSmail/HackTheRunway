@@ -23,15 +23,6 @@ def main():
 
 
 
-
-
-
-
-
-
-
-
-
 """@swap_bp.route("/swap", methods=["GET", "POST"])
 def swap():
     if request.method == "GET":
