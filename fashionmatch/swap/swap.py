@@ -14,7 +14,7 @@ def main():
         Names=["Hamish","John","Mike"],
         receiver_uname="John",
         sender_uname="Mike",
-        locations=[{"lat":51.5,"long":-0.09}]
+        locations=[{"lat":51.5,"long":-0.09},{"lat":29.7,"long":-5.0},{"lat":20.0,"long":5.0}]
     )
 
 

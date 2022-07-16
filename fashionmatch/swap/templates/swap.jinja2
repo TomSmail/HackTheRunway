@@ -138,10 +138,37 @@
                     maxZoom: 19,
                     attribution: '© OpenStreetMap'
                 }).addTo(map);
-                {%for location in locations%}
-                    var marker = L.marker({{location["lat"]}}, {{location["long"]}}).addTo(map);
+                
+var greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
 
+L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
+
+                {%with location|last as last%}
+                {%for location in locations%}
+                    var marker = L.marker([{{location["lat"]}}, {{location["long"]}}],{icon:greenIcon}).addTo(map).bindPopup("test");
+                    var simpleVector1 = L.polyline([[
+                        {{%if loop.previtem == undefined%}}
+                            {{last["lat"]}}
+                        {{else}}
+                            {{loop.previtem["lat"]}}
+                        {{endif}}
+                        
+                        , 
+                        {{%if loop.previtem == undefined%}}
+                            {{last["long"]}}
+                        {{else}}
+                            {{loop.previtem["long"]}}
+                        {{endif}}
+                        ],[{{location["lat"]}}, {{location["long"]}}]], {color: "green", weight: 2 }).arrowheads()
                 {%endfor%}
+                {{%endwith%}}}
             </script>
         </div>
     </div>
