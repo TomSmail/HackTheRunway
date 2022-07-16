@@ -25,8 +25,6 @@ def init_app():
         app.register_blueprint(account.account_bp, url_prefix="/account")
         app.register_blueprint(swap.swap_bp, url_prefix="/swap")
 
-        app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-
         # engine = create_engine(os.environ["DATABASE_URL"])
         # conn = engine.connect()
         return app

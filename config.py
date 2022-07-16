@@ -9,10 +9,11 @@ class Config():
     SECRET_KEY = 'make this more secret'
     FLASK_SECRET = SECRET_KEY
     DB_HOST = 'database' # do this later
+    UPLOAD_FOLDER = "uploads"
 
 class DebugConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
     DB_HOST = 'my.production.database'
-    UPLOAD_FOLDER = "../uploads"
+    UPLOAD_FOLDER = "uploads"
 

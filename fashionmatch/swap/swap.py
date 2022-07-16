@@ -24,8 +24,6 @@ def main():
     )
 
 
-
-
 @swap_bp.route("/hasitem", methods=["GET", "POST"])
 def add():
     if request.method == 'GET':
@@ -73,7 +71,7 @@ def add():
             articles = cur.fetchall()
             articleid = articles[0][0]
             userid = session['uid'];
-            cur.execute("INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');",(userid,articleid,filename,cotton,locationmade))
+            cur.execute("""INSERT INTO 'User_Has' (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
 
         return redirect(url_for("home_bp.home"))
 
