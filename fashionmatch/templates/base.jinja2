@@ -34,12 +34,13 @@
         {# <div id="spacer"></div> #}
 
         <a  href="{{url_for('home_bp.home')}}"><h1>SWAPIFY</h1></a>
+        <a  href="{{url_for('leaderboard_bp.home')}}">Leaderboard</a>
+
 
         <div id="spacer"></div> {# Spaces out the header into columns with flex #}
 
         <ul>
             <li>
-                <a  href="{{url_for('leaderboard_bp.home')}}">Leaderboard</a>
                 {% if session['email'] %}
                     <span>{{session['email']}}</span>
                     <a class="rightlink" href="{{url_for('account_bp.logout')}}">Logout</a>

@@ -1,32 +1,35 @@
-input{ /*general input button*/
-    padding:10px;
-    border:0;
+input {
+    /*general input button*/
+    padding: 10px;
+    border: 0;
     /* box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.1); */
-    border-radius:3px; 
+    border-radius: 3px;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
     box-sizing: border-box;
     border: 1px solid black;
-    
-  }
 
-h2{
+}
+
+h2 {
     text-align: left;
     padding-top: 25px;
 }
 
 
-input[type=submit]{ /*green submit button*/
-    padding:10px;
-    border:0;
-    box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.1);
-    border-radius:10px;
+input[type=submit] {
+    /*green submit button*/
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(12, 12, 12, 0.1);
+    border-radius: 10px;
     width: 100%;
     margin-top: 10px;
     background-color: #f497ec;
-  }
-  .centre{
+}
+
+.centre {
     vertical-align: center;
     padding-left: 5%;
     padding-right: 5%;
