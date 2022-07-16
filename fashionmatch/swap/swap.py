@@ -46,7 +46,7 @@ def hasitem():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join("..",os.path.join(app.config['UPLOAD_FOLDER'], filename)))   
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         colour = request.values.get('colour')
         typeOfItem = request.values.get('type')
@@ -54,12 +54,14 @@ def hasitem():
         condition = request.values.get('condition') # actually string!
         cotton = request.values.get('cotton')
         locationmade = request.values.get('locationmade')
-
+        print(cotton)
+        print(locationmade)
+        
         cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                     (colour, typeOfItem, pricerange, condition))
         articles = cur.fetchall()
         if len(articles) != 0:  # article already exists
-            print(articles)
+            #print(articles)
             articleid = articles[0]["articleid"]
             userid = session['uid']
             cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem, cotton, locationmade) VALUES (%s, %s,%s,%s,%s);""",
@@ -70,7 +72,7 @@ def hasitem():
             cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                         (colour, typeOfItem, pricerange, condition))
             articles = cur.fetchall()
-            print(articles)
+            #print(articles)
             articleid = articles[0]["articleid"]
             userid = session['uid']
             cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES (%s, %s,%s,%s,%s);""",
