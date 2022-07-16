@@ -59,7 +59,8 @@ def hasitem():
                     (colour, typeOfItem, pricerange, condition))
         articles = cur.fetchall()
         if len(articles) != 0:  # article already exists
-            articleid = articles[0][0]
+            print(articles)
+            articleid = articles[0]["articleid"]
             userid = session['uid']
             cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem, cotton, locationmade) VALUES (%s, %s,%s,%s,%s);""",
                         (userid, articleid, filename, cotton, locationmade))
@@ -69,7 +70,8 @@ def hasitem():
             cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                         (colour, typeOfItem, pricerange, condition))
             articles = cur.fetchall()
-            articleid = articles[0][0]
+            print(articles)
+            articleid = articles[0]["articleid"]
             userid = session['uid']
             cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES (%s, %s,%s,%s,%s);""",
                         (userid, articleid, filename, cotton, locationmade))
