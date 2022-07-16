@@ -44,7 +44,7 @@ div.withlink {
     align-items: center;
     height: 140px;
     justify-content: center;
-    filter: grayscale(100%) ; 
+    /* filter: grayscale(100%) ;  */
 
 
 }
