@@ -1,54 +1,14 @@
-
 {% extends "base.jinja2" %}
 {% block main %}
 
+
     <head>
         <meta charset="UTF-8">
+
+
         <style>
 
             input{ /*general input button*/
-                padding:10px;
-                border:0;
-                box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.2);
-                border-radius:10px;
-                width: 100%;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                box-sizing: border-box;
-              }
-
-            label{ 
-                box-sizing: border-box;
-                color: darkgrey;
-                margin-left: 20px;
-                margin-top: 10px;
-            }
-
-            input[type=submit]{ /*green submit button*/
-                padding:10px;
-                border:0;
-                box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.2);
-                border-radius:10px;
-                width: 100%;
-                margin-top: 10px;
-                background-color: palegreen;
-              }
-
-   <html>
-    <head>
-        <meta charset="UTF-8">
-
-        <script src="https://code.jquery.com/jquery-3.2.1.js"> </script>
-
-        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" href="fashionmatch\static\shared.css">
-
-        <title>Swapify</title>
-        <link rel="shortcut icon" type="ico" href="favicon.ico"/>
-
-        <style>
-
-            input{ /*general input*/
                 padding:10px;
                 border:0;
                 box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.2);
@@ -79,7 +39,8 @@
 
               .centre{
                 vertical-align: middle;
-                padding: 15%;
+                padding-left: 15%;
+                padding-right: 15%;
           }
 
         </style>
@@ -89,10 +50,8 @@
 <form method="POST" style="display:block;">
     <div class="centre">
 
-      <label for="email">Email:</label><br>
       <input type="text" id="email" name="email" placeholder = "Email Address" required><br>
   
-      <label for="password">Password:</label><br>
       <input type="password" id="password" name="password" placeholder = "Password" required><br><br>
   
       <input type="submit" value="Submit">
