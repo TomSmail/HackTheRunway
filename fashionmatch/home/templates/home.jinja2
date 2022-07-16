@@ -35,6 +35,7 @@
     <div class="half box item">
 
         {# RealDictRow([('typeofclothing', 'tshirt'), ('color', 'blue'), ('pricerange', 1), ('condition', 1), ('locationmade', None), ('cotton', None), ('imageofitem', 'downloadx.png')]) #}
+        <img src="{{ url_for('home_bp.download_file', filename=item.imageofitem) }} " alt="img" width="50%" >
 
         <p>typeofclothing - {{item.typeofclothing}}</p>
         <p>color - {{item.color}}</p>
@@ -43,8 +44,11 @@
         <p>location - {{item.locationmade}}</p>
         <p>cotton - {{item.cotton}}</p>
 
+<<<<<<< HEAD
         <img src="{{ url_for('home_bp.download_file', filename=item.imageofitem) }} " alt="img" width="100%" >
 
+=======
+>>>>>>> f4553dcad509e3a9d0d81e32e15a777e81d5cd51
     </div>
     
     {% endfor %}

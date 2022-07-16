@@ -1,8 +1,10 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
 
 body{
     background-color: white;
-    font-family: sans-serif;
+    font-family: Inter ,sans-serif;
     margin: 0px;
 }
 
@@ -17,7 +19,7 @@ nav.navbar{
     z-index: 3;
     display: inline-flex;
     flex-direction: row;
-    height: 5%;
+    height: 50px;
     color: white;
     align-items: center;
 }
@@ -55,14 +57,15 @@ main { /* DONT LIKE THIS - NEED HELP */
     text-align:center;
     width:96%;
     flex-direction: column;
-    position: absolute;
-    /*max-width: 60em;*/
+    max-width: 70em;
+
     min-width: 45em;
-    margin: 0 auto;
+    margin: 0 auto; /* TB-0, LR AUTO - centers when max width reached? */
     padding-left: 2%;
     padding-right: 2%;
     z-index: 1;
-    top: 7%;
+    box-sizing: border-box;
+    padding-top: 60px;
 }
 
 

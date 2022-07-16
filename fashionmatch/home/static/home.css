@@ -60,4 +60,6 @@ div.item{
 
 a {
     all: unset;
+    cursor:pointer;
+
 }
