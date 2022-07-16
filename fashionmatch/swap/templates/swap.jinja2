@@ -150,25 +150,12 @@ var greenIcon = new L.Icon({
 
 L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
 
-                {%with location|last as last%}
+                var simpleVector1; var marker;
                 {%for location in locations%}
-                    var marker = L.marker([{{location["lat"]}}, {{location["long"]}}],{icon:greenIcon}).addTo(map).bindPopup("test");
-                    var simpleVector1 = L.polyline([[
-                        {{%if loop.previtem == undefined%}}
-                            {{last["lat"]}}
-                        {{else}}
-                            {{loop.previtem["lat"]}}
-                        {{endif}}
-                        
-                        , 
-                        {{%if loop.previtem == undefined%}}
-                            {{last["long"]}}
-                        {{else}}
-                            {{loop.previtem["long"]}}
-                        {{endif}}
-                        ],[{{location["lat"]}}, {{location["long"]}}]], {color: "green", weight: 2 }).arrowheads()
+                    marker = L.marker([{{location["lat"]}}, {{location["long"]}}],{icon:greenIcon}).addTo(map).bindPopup("test");
+                    simpleVector1 = L.polyline([[{%if loop.first%}{{locations[-1]["lat"]}}{%else%}{{loop.previtem["lat"]}}{%endif%},{%if loop.first%}{{locations[-1]["long"]}}{%else%}{{loop.previtem["long"]}}{%endif%}],[{{location["lat"]}}, {{location["long"]}}]], {color: "green", weight: 2 }).addTo(map).arrowheads({size: '10%', frequency: 'endonly'})
                 {%endfor%}
-                {{%endwith%}}}
+                
             </script>
         </div>
     </div>
