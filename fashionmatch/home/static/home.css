@@ -1,0 +1,18 @@
+div#maincontainer{
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    flex-flow: row wrap;
+    place-content: stretch flex-start;
+}
+div.box{
+    padding: 5px;
+    background-color: red;
+    /* border: 1px solid red; */
+}
+div.full{
+    width: 100%;
+}
+div.half{
+    width: 50%;
+}
