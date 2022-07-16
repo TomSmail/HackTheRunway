@@ -61,8 +61,11 @@ def register():
         cur.execute('INSERT INTO "User" (email, passwordhash, firstname, lastname) VALUES (%s, %s, %s, %s);',
                     (email, passwordhash, first_name, last_name ))
 
+        cur.execute("""SELECT userid FROM "User" WHERE email='%s';""", (email))
+
         # Session
         session['email'] = email
+        session['uid'] = cur.fetchall()[0][0];
         # return
         return redirect(url_for("account_bp.home"))
 

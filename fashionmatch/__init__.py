@@ -7,6 +7,7 @@ from .swap import swap
 
 import config
 
+UPLOAD_FOLDER = "../uploads"
 
 def init_app():
     """Create Flask application."""
@@ -24,6 +25,8 @@ def init_app():
         app.register_blueprint(home.home_bp)
         app.register_blueprint(account.account_bp, url_prefix="/account")
         app.register_blueprint(swap.swap_bp, url_prefix="/swap")
+
+        app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
         # engine = create_engine(os.environ["DATABASE_URL"])
         # conn = engine.connect()

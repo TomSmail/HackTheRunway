@@ -25,7 +25,10 @@ CREATE TABLE "Article" (
 CREATE TABLE "User_Has" (
 	HasID SERIAL PRIMARY KEY NOT NULL,
 	HasUserID INT REFERENCES "User"(UserID) ,
-	ArticleID INT REFERENCES "Article"(ArticleID) 
+	ArticleID INT REFERENCES "Article"(ArticleID),
+	ImageOfItem Text,
+	Cotton BOOLEAN,
+	LocationMade TEXT
 );
 
 CREATE TABLE "User_Wants" (
