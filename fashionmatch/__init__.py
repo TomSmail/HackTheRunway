@@ -2,6 +2,7 @@ from flask import Flask
 
 from .home import home
 from .account import account
+from .swap import swap
 
 import config
 
@@ -19,5 +20,6 @@ def init_app():
         # Register Blueprints
         app.register_blueprint(home.home_bp)
         app.register_blueprint(account.account_bp, url_prefix="/account")
+        app.register_blueprint(swap.swap_bp, url_prefix="/swap")
         
         return app
