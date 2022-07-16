@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, send_from_directory, session
+from flask import current_app as app
 from fashionmatch.auth import ensurelogin
 from fashionmatch.db import get_db
 
@@ -20,3 +21,9 @@ def home():
         "home.jinja2",
         response=resp
     )
+
+
+@home_bp.route('/uploads/<path:filename>')
+def download_file(filename):
+    print("ok")
+    return send_from_directory("../" + app.config['UPLOAD_FOLDER'], filename, as_attachment=False)
