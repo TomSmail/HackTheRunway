@@ -4,13 +4,10 @@ import os
 from werkzeug.utils import secure_filename
 
 from fashionmatch.db import get_db
-<<<<<<< HEAD
 from .locateswaps import genGraph,cycleFind
-=======
 from fashionmatch.auth import ensurelogin
 
 
->>>>>>> f4553dcad509e3a9d0d81e32e15a777e81d5cd51
 
 swap_bp = Blueprint(
     "swap_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/sstatic'
