@@ -5,13 +5,13 @@ from flask import current_app, g
 from configparser import ConfigParser
 
 
-def init_db():
-    """Helper for init. Executes schema.sql"""
-    db, cur = get_db()
-    schema_path = os.path.join(os.getcwd(), 'sql/schema.sql')
-    with current_app.open_resource(schema_path) as f:
-        cur.execute(f.read())
-    #return cur.fetchone()['version']  # DB Version
+# def init_db():
+#     """Helper for init. Executes schema.sql"""
+#     db, cur = get_db()
+#     schema_path = os.path.join(os.getcwd(), 'sql/schema.sql')
+#     with current_app.open_resource(schema_path) as f:
+#         cur.execute(f.read())
+#     #return cur.fetchone()['version']  # DB Version
 
 
 def seed_db():
@@ -41,10 +41,10 @@ def get_config(filename="database.ini", section="postgresql"):
 def get_db():
     """Attempt to connect to database and attach to global app"""
     if ("db" not in g) or ("cur" not in g):
-        db_config = get_config()
-        g.db = psycopg2.connect(**db_config)  # db connection
-        g.db.autocommit = True
-        g.cur = g.db.cursor(cursor_factory=extras.DictCursor)  # operation cursor
+       db_config = get_config()
+       g.db = psycopg2.connect(**db_config)  # db connection
+       g.db.autocommit = True
+       g.cur = g.db.cursor(cursor_factory=extras.DictCursor)  # operation cursor
     return g.db, g.cur
 
 

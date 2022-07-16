@@ -87,3 +87,8 @@ th,td {
 .flex-outer {
     display: flex;
 }
+
+.PFP {
+    width: 30px;
+    height: 30px;
+}
