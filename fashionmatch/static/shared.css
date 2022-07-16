@@ -53,13 +53,14 @@ div#vertSpacer{
 main { /* DONT LIKE THIS - NEED HELP */
     /*display: flex;*/
     text-align:center;
-    width:100%;
+    width:96%;
     flex-direction: column;
     position: absolute;
     /*max-width: 60em;*/
     min-width: 45em;
     margin: 0 auto;
-    padding: 0 2em;
+    padding-left: 2%;
+    padding-right: 2%;
     z-index: 1;
     top: 7%;
 }
@@ -68,7 +69,20 @@ main { /* DONT LIKE THIS - NEED HELP */
 table {
     margin-left:auto;
     margin-right:auto;
+    border-style: solid;
+    border-collapse:collapse;
 }
+
+th,td {
+    border-style: solid;
+    border-collapse: collapse;    
+    padding:10px;
+}
+
+/*.customSelect  {
+    background-color: blue;
+
+}*/
 
 .flex-outer {
     display: flex;
