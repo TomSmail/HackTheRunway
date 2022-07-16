@@ -11,7 +11,7 @@
 
     {% if true %}
     <div class="full box" id="alert"">
-        <span>1 NEW SWAP AVAILABLE</span>
+        <span>{{amount}} NEW SWAP{%if amount != 1%}S{%endif%} AVAILABLE!</span>
     </div>
     {% endif %}
 
