@@ -10,7 +10,10 @@ swap_bp = Blueprint(
 def main():
     return render_template(
         "swap.jinja2",
-        PFPs=["https://i.stack.imgur.com/56V4z.jpg?s=64&g=1",""]
+        PFPs=["https://avatars.githubusercontent.com/u/37508609?s=64&v=4","https://i.stack.imgur.com/56V4z.jpg?s=64&g=1","https://avatars.githubusercontent.com/u/30555853?s=64&v=4"],
+        Names=["Hamish","John","Mike"],
+        receiver_uname="John",
+        sender_uname="Mike"
     )
 
 
