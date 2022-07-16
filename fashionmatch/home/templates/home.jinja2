@@ -2,8 +2,43 @@
 
 {% block title %}Home{% endblock %}
 
-{% block main %}
-Home template
 
-<p>Example link - <a href="{{ url_for('account_bp.home') }}">Account</a></p>
+{% block extrastyles %}<link rel="stylesheet" href="{{url_for('home_bp.static', filename='home.css')}}">{% endblock %}
+
+{% block main %}
+
+<div id="maincontainer">
+
+    {% if true %}
+    <div class="full box">
+        <span>SWAP FOUND - WIDE</span>
+    </div>
+    {% endif %}
+
+    <div class="half box">
+        <span>half</span>
+    </div>
+    <div class="half box">
+        <span>half</span>
+    </div>
+    <div class="half box">
+        <span>half</span>
+    </div>
+
+
+
+Add Item
+
+Show Public items
+
+
+
+
+Your items for swapping: 
+
+
+
+</div>
+
+{# <p>Example link - <a href="{{ url_for('account_bp.home') }}">Account</a></p> #}
 {% endblock %}
