@@ -1,0 +1,74 @@
+{% extends "base.jinja2" %}
+
+{# This page is for confirming the swap between people#}
+
+{% block extrastyles %}<link rel="stylesheet" href="{{url_for('swap_bp.static', filename='item.css')}}">{% endblock %}
+
+
+{% block main %}
+
+<h2>Add item</h2>
+
+
+<form method="POST">
+  <table id="IHave"> 
+          <tr> <th>Type of clothing</th> <th>Colour</th> <th>Price Range</th> <th>Condition</th>  <th>Is Cotton</th> <th>Country of Origin</th> <th>Upload Photo</th> </tr>
+        <tr id="singleRowIHave" > 
+            <td>
+                <div class="customSelect">
+                    <select name="type">
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="shorts">Shorts</option>
+                        <option value="dress">Dress</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <select name="colour">
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="orange">Orange</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                </select>
+            </td>
+            <td>
+                <select name="pricerange">
+                    <option value="1">£</option>
+                    <option value="2">££</option>
+                    <option value="3">£££</option>
+                </select>
+            </td>            
+
+            <td>
+                <select name="condition">
+                    <option value="asnew">As New</option>
+                    <option value="somewear">Some wear</option>
+                    <option value="heavilyworm">Heavily worn</option>
+                </select>
+            </td>
+
+            <td>
+              <input type="checkbox">
+            </td>
+
+            <td>
+              <input type="text">
+            </td>
+
+
+            <td> 
+                <input type="file" name="file1">
+            </td>
+
+        </tr>
+    </table>
+
+  <input type="submit" value="Submit" class="btn">
+</form> 
+
+
+
+
+{% endblock %}

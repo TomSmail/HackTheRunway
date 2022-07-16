@@ -69,7 +69,7 @@
             input{ /*general input button*/
                 padding:10px;
                 border:0;
-                box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.2);
+                box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.1);
                 border-radius:10px;
                 width: 100%;
                 margin-top: 10px;
@@ -80,7 +80,7 @@
 
             label{ 
                 box-sizing: border-box;
-                color: darkgrey;
+                color: black;
                 margin-left: 20px;
                 margin-top: 10px;
             }
@@ -88,16 +88,24 @@
             input[type=submit]{ /*green submit button*/
                 padding:10px;
                 border:0;
-                box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.2);
+                box-shadow:0 0 15px 4px rgba(12, 12, 12, 0.1);
                 border-radius:10px;
                 width: 100%;
                 margin-top: 10px;
                 background-color: palegreen;
               }
               .centre{
-                vertical-align: middle;
-                padding: 15%;
-          }
+                vertical-align: center;
+                padding-left: 5%;
+                padding-right: 5%;
+                border-color: black;
+                background-color: lightgrey;
+                margin-left: 15%;
+                margin-right: 15%;
+                margin-top: 20%;
+                border-radius: 4px;
+                border-width: 2px;
+            }
         </style>
     </head>
 
@@ -105,16 +113,12 @@
 <form method="POST" style="display:block;">
     <div class="centre">
 
-      <label for="firstName">First Name</label><br>
       <input type="text" id="firstName" name="firstName" placeholder = "First Name" required><br>
 
-      <label for="lastName">Last Name</label><br>
       <input type="text" id="lastName" name="lastName" placeholder = "Last Name" required><br>
 
-      <label for="email">Email:</label><br>
       <input type="text" id="email" name="email" placeholder = "Email Address" required><br>
-  
-      <label for="password">Password:</label><br>
+
       <input type="password" id="password" name="password" placeholder = "Password" required><br><br>
   
       <input type="submit" value="Submit">
