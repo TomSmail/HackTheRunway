@@ -1,5 +1,8 @@
-from flask import Blueprint, make_response, url_for, redirect, request, render_template, flash, session
 from fashionmatch.db import get_db
+
+from passlib.hash import argon2
+from flask import Blueprint, make_response, url_for, redirect, request, render_template, flash, session
+
 
 account_bp = Blueprint(
     "account_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/astatic', 
@@ -24,8 +27,10 @@ def register():
 
         
     if request.method == 'POST':
-        username = request.values.get('email')
+        email = request.values.get('email')
         password = request.values.get('password')
-        print(username, password)
+        
+        
+        print(email, password)
         return make_response("WORKS", 200)
 
