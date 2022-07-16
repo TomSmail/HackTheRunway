@@ -1,4 +1,6 @@
 from flask import Flask
+import os
+
 
 from .home import home
 from .account import account
@@ -6,7 +8,7 @@ from .swap import swap
 
 import config
 
-import os
+
 from sqlalchemy import create_engine, text
 
 
@@ -40,14 +42,18 @@ def init_app():
 
         app.config.from_object(config.DebugConfig)
 
+        from . import db
+        db.init_app(app)
 
+        
+        
         # Register Blueprints
         app.register_blueprint(home.home_bp)
         app.register_blueprint(account.account_bp, url_prefix="/account")
         app.register_blueprint(swap.swap_bp, url_prefix="/swap")
 
         
-        engine = create_engine(os.environ["DATABASE_URL"])
-        conn = engine.connect()
+        # engine = create_engine(os.environ["DATABASE_URL"])
+        # conn = engine.connect()
 
         return app
