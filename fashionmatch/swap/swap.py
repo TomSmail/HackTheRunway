@@ -4,9 +4,8 @@ import os
 from werkzeug.utils import secure_filename
 
 from fashionmatch.db import get_db
-from .locateswaps import genGraph,cycleFind
+from .locateswaps import genGraph, cycleFind
 from fashionmatch.auth import ensurelogin
-
 
 
 swap_bp = Blueprint(
@@ -24,13 +23,23 @@ def allowed_file(filename):
 @swap_bp.route("/", methods=["GET"])
 @ensurelogin
 def main():
-    # List all swaps here
-    return True
 
-@swap_bp.route('/<id>')  
+    db, cur = get_db()
+    uid = (session.get("uid", None))
+    cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID WHERE HasUserID=%s;', (str(uid),))
+    items = cur.fetchall()
+    
+    return render_template(
+        "allswaps.jinja2",
+        number = len(items),
+        items=items
+    )
+
+
+@swap_bp.route('/<id>')
 @ensurelogin
 def swapid(id):
-    #cur  
+    # cur
     return render_template(
         "swap.jinja2",
         PFPs=["https://avatars.githubusercontent.com/u/37508609?s=64&v=4",
@@ -47,7 +56,7 @@ def swapid(id):
 # 	MatchID INT NOT NULL,
 # 	HasID INT REFERENCES "User_Has"(HasID),
 # 	WantsID INT REFERENCES "User_Wants"(WantsID) ,
-# 	Status VARCHAR(10) NOT NULL 
+# 	Status VARCHAR(10) NOT NULL
 # );
 
 
@@ -71,7 +80,7 @@ def hasitem():
         colour = request.values.get('colour')
         typeOfItem = request.values.get('type')
         pricerange = request.values.get('pricerange')
-        condition = request.values.get('condition') # actually string!
+        condition = request.values.get('condition')  # actually string!
         cotton = request.values.get('cotton')
         locationmade = request.values.get('locationmade')
         # print(cotton)
@@ -81,7 +90,7 @@ def hasitem():
                     (colour, typeOfItem, pricerange, condition))
         articles = cur.fetchall()
         if len(articles) != 0:  # article already exists
-            #print(articles)
+            # print(articles)
             articleid = articles[0]["articleid"]
             userid = session['uid']
             cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem, cotton, locationmade) VALUES (%s, %s,%s,%s,%s) RETURNING hasid;""",
@@ -92,15 +101,15 @@ def hasitem():
             cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                         (colour, typeOfItem, pricerange, condition))
             articles = cur.fetchall()
-            #print(articles)
+            # print(articles)
             articleid = articles[0]["articleid"]
             userid = session['uid']
             cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES (%s, %s,%s,%s,%s) RETURNING hasid;""",
                         (userid, articleid, filename, cotton, locationmade))
-        
-        insertedHasID = cur.fetchone()["hasid"]                        
 
-        getSwaps(None,insertedHasID)
+        insertedHasID = cur.fetchone()["hasid"]
+
+        getSwaps(None, insertedHasID)
         return redirect(url_for("home_bp.home"))
 
 
@@ -111,17 +120,17 @@ def wantitem():
         return render_template("wantitem.jinja2")
     elif request.method == 'POST':
         db, cur = get_db()
-    
+
         colour = request.values.get('colour')
         typeOfItem = request.values.get('type')
         pricerange = request.values.get('pricerange')
         condition = request.values.get('condition')  # actually string!
-        
+
         cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                     (colour, typeOfItem, pricerange, condition))
         articles = cur.fetchall()
         if len(articles) != 0:  # article already exists
-            #print(articles)
+            # print(articles)
             articleid = articles[0]["articleid"]
             userid = session['uid']
             cur.execute("""INSERT INTO "User_Wants" (wantsuserid, articleid) VALUES (%s, %s) RETURNING wantsid;""",
@@ -132,41 +141,41 @@ def wantitem():
             cur.execute("""SELECT articleid FROM "Article" WHERE color=%s AND typeofclothing=%s AND pricerange=%s AND condition=%s;""",
                         (colour, typeOfItem, pricerange, condition))
             articles = cur.fetchall()
-            #print(articles)
+            # print(articles)
             articleid = articles[0]["articleid"]
             userid = session['uid']
             cur.execute("""INSERT INTO "User_Wants" (wantsuserid, articleid ) VALUES (%s, %s) RETURNING wantsid;""",
                         (userid, articleid))
-        
+
         insertedWantsID = cur.fetchone()["wantsid"]
 
-
-        getSwaps(insertedWantsID,None)
+        getSwaps(insertedWantsID, None)
         return redirect(url_for("home_bp.home"))
 
 
+def getSwaps(addedWantId, addedHasId):
+    db, cur = get_db()
+    graph = genGraph()
+    cycles = cycleFind(graph)
+    cycles.sort(key=len)
 
-def getSwaps(addedWantId,addedHasId):
-  db, cur = get_db()  
-  graph = genGraph()
-  cycles = cycleFind(graph)
-  cycles.sort(key = len)
+    cur.execute("""SELECT * FROM "Match_Article";""")
+    results = cur.fetchall()
+    if len(results) == 0:
+        currentCycleID = 0
+    else:
+        currentCycleID = results[-1]["matchid"]+1
 
-  cur.execute("""SELECT * FROM "Match_Article";""")
-  results = cur.fetchall()
-  if len(results) == 0:
-    currentCycleID = 0
-  else:
-    currentCycleID = results[-1]["MatchID"]+1;
+    for cycle in cycles:
+        new = False
+        for item in cycle:
+            # NEEEED TO TEST THIS to ensure it doesn't do it several times.
+            if item["HasID"] == addedHasId or item["WantsID"] == addedWantId:
+                new = True
+        if not(new):
+            continue
+        for i in range(len(cycle)):
+            cur.execute("""INSERT INTO "Match_Article" (MatchID,HasID,WantsID,Status) VALUES (%s,%s,%s,%s);""",
+                        (currentCycleID, cycle[i]["HasID"], cycle[i]["WantsID"], "0"))
 
-  for cycle in cycles:
-    new = False
-    for item in cycle:
-      if item["HasID"] == addedHasId or item["WantsID"] == addedWantId: #NEEEED TO TEST THIS to ensure it doesn't do it several times.
-        new = True
-    if not(new):
-        continue 
-    for i in range(len(cycle)):
-      cur.execute("""INSERT INTO "Match_Article" (MatchID,HasID,WantsID,Status) VALUES (%s,%s,%s,%s);""",(currentCycleID,cycle[i]["HasID"],cycle[i]["WantsID"],"0"))
-
-    currentCycleID += 1
+        currentCycleID += 1
