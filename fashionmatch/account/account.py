@@ -18,9 +18,7 @@ def home():
 @account_bp.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == 'GET':
-        db, cur = get_db()
-        cur.execute('SELECT * FROM usr WHERE id = (%s);', (1,))
-        print(cur.fetchone())
+        
         return render_template(
             "register.jinja2",
         )
@@ -29,8 +27,13 @@ def register():
     if request.method == 'POST':
         email = request.values.get('email')
         password = request.values.get('password')
+        passwordhash = argon2.hash(password)
+
+        db, cur = get_db()
+        cur.execute('INSERT INTO "User" ("Email", "PasswordHash") VALUES (%s, %s);', (email, passwordhash))
+        print(cur.fetchone())
         
         
-        print(email, password)
+        print(passwordhash, password)
         return make_response("WORKS", 200)
 
