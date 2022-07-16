@@ -1,7 +1,5 @@
 
 
-html,
-
 body{
     background-color: white;
     font-family: sans-serif;
@@ -63,8 +61,8 @@ main { /* DONT LIKE THIS - NEED HELP */
 
 
 /* refactor below? */
-
-/* 
+/*
+ 
 *{
     box-sizing: border-box;
  }
