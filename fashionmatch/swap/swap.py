@@ -78,11 +78,7 @@ def additem():
             articles = cur.fetchall()
             articleid = articles[0][0]
             userid = session['uid'];
-<<<<<<< HEAD
             cur.execute("""INSERT INTO 'User_Has' (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
-=======
-            cur.execute("""INSERT INTO "User_Has" (hasuserid, articleid ,imageofitem,cotton,locationmade) VALUES ('%s', '%s','%s','%s','%s');""",(userid,articleid,filename,cotton,locationmade))
->>>>>>> a87cb38b1778d0b5e286c66cde1fbc768921c3e2
 
         return redirect(url_for("home_bp.home"))
 
