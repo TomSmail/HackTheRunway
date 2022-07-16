@@ -1,4 +1,6 @@
-from flask import Blueprint, make_response, url_for, redirect, request, render_template, flash, session
+from flask import Blueprint, Response, make_response, url_for, redirect, request, render_template, flash, session
+from flask import current_app as app
+import os
 from werkzeug.utils import secure_filename
 
 from fashionmatch.db import get_db
@@ -33,6 +35,7 @@ def hasitem():
         return render_template("hasitem.jinja2")
     if request.method == 'POST':
         db, cur = get_db()
+        print(request.files)
         file = request.files["image"]
         if file.filename == '':
             flash('No selected file')
@@ -49,12 +52,12 @@ def hasitem():
         locationmade = request.values.get('locationmade')
 
         if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
+            # flash('No file part')
+            return Response("You need a file", status=301, mimetype='application/json')
+
         file = request.files['file']
 
-        #From the flask documentation
-
+        # From the flask documentation
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
 
