@@ -8,8 +8,7 @@
 {% block main %}
 
 <div id="maincontainer">
-
-    {% if true %}
+    {% if amount > 0 %}
     <div class="full box" id="alert"">
         <a href="/swap"><span>{{amount}} NEW SWAP{%if amount != 1%}S{%endif%} AVAILABLE!</span></a>
     </div>
