@@ -29,17 +29,14 @@
         <span>Your listed items:</span>
     </div>
 
-    
+
     {% for item in response %}
     <div class="half box item">
 
-        {# RealDictRow([('typeofclothing', 'tshirt'), ('color', 'blue'), ('pricerange', 1), ('condition', 1), ('locationmade', None), ('cotton', None), ('imageofitem', 'downloadx.png')]) #}
-        <img src="{{ url_for('home_bp.download_file', filename=item.imageofitem) }} " alt="img" width="50%" >
 
         {% set typemap = {"tshirt":"T-Shirt", "shorts":"Shorts", "dress":"Dress"} %}
         {% set pricemap = {1:"£", 2:"££", 3:"£££"} %}
         {% set conditionmap = {1:"As New", 2:"Some Wear", 3:"Heavily worn"} %}
-        {% set cottonmap = {true:"Yes", false:"No"} %}
 
 
         <table class="datatable">
@@ -59,15 +56,7 @@
                 <td>Condition</td>
                 <td>{{conditionmap[item.condition]}}</td>
             </tr>
-            <tr>
-                <td>Location</td>
-                <td>{{item.locationmade}}</td>
-            </tr>
-            <tr>
-            <td>Cotton</td>
-                <td>{{cottonmap[item.cotton]}}</td>
-                
-            </tr>
+          
 
         </table>
 
@@ -81,7 +70,7 @@
     </div>
 
 
-    {% for item in response %}
+    {% for item in wants %}
     <div class="half box item">    
         {% set typemap = {"tshirt":"T-Shirt", "shorts":"Shorts", "dress":"Dress"} %}
         {% set pricemap = {1:"£", 2:"££", 3:"£££"} %}
