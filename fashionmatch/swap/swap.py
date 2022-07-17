@@ -79,13 +79,24 @@ def swapid(id):
     names = []
     locations = []
     user_coords = []
+    approved = []
+    addresses = []
     def getNext(userid):
         nonlocal pfps, names,user_coords
-        cur.execute('SELECT firstname,profilepicturelink,coordlat,coordlong FROM "User" WHERE userid=%s;',(userid,));
+        cur.execute('SELECT address,firstname,profilepicturelink,coordlat,coordlong FROM "User" WHERE userid=%s;',(userid,));
         record = cur.fetchall()[0]
         pfps.append(record["profilepicturelink"])
         names.append(record["firstname"])
         locations.append({"lat":record["coordlat"],"long":record["coordlong"]})
+        addresses.append(record["address"])
+
+        cur.execute('SELECT status FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".hasid="User_Has".hasid WHERE hasuserid=%s AND matchid=%s;',(userid,id,));
+        status = int(cur.fetchall()[0]["status"])
+        approved.append(status)
+        
+
+
+##approve and reject
 
         print(userid)
         print(session['uid'])
@@ -107,13 +118,15 @@ def swapid(id):
     return render_template(
         "swap.jinja2",
         PFPs=pfps,
-        Names=names,
+        names=names,
         receiver_uname=receiver_uname,
         sender_uname=sender_uname,
         giving_image_url=receiver_image,
         getting_image_url=sender_image,
         locations=locations,
-        points = points
+        points = points,
+        approved=approved,
+        addresses=addresses
     )
 
 
