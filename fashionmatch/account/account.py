@@ -11,13 +11,36 @@ account_bp = Blueprint(
 )
 
 
-@account_bp.route("/", methods=["GET"])
+@account_bp.route("/", methods=["GET", "POST"])
 @ensurelogin
 def home():
-    return redirect(url_for("home_bp.home"))
-    return render_template(
-        "account.jinja2",
-    )
+
+    if request.method == 'GET':
+        db, cur = get_db()
+        cur.execute("""SELECT * FROM "User" WHERE userid=%s;""",
+                    (session.get("uid", None),))
+        i = cur.fetchone()
+        return render_template(
+            "updateprofile.jinja2",
+            resp=i,
+        )
+    if request.method == 'POST':
+        pass
+        print(request.values)
+        email = request.values.get('email')
+        firstName = request.values.get('firstName')
+        lastName = request.values.get('lastName')
+        address = request.values.get('address')
+        coordlat = request.values.get('coordlat')
+        coordlong = request.values.get('coordlong')
+        profilepicturelink = request.values.get('profilepicturelink')
+
+        db, cur = get_db()
+        cur.execute("""UPDATE "User" SET email= %s,  firstname= %s, lastname= %s, address= %s, coordlat= %s, coordlong= %s, profilepicturelink= %s  WHERE userid=%s;""",
+                    (email, firstName, lastName, address, coordlat,
+                     coordlong, profilepicturelink, session.get("uid", None),))
+
+        return redirect(url_for("home_bp.home"))
 
 
 @account_bp.route("/login", methods=["GET", "POST"])  # ! ADD POST!!
@@ -44,12 +67,12 @@ def login():
         else:
             db, cur = get_db()
 
-            cur.execute("""SELECT userid FROM "User" WHERE email=%s;""", (email,))
+            cur.execute(
+                """SELECT userid FROM "User" WHERE email=%s;""", (email,))
 
             # Session
             session['email'] = email
-            session['uid'] = cur.fetchall()[0]["userid"];            
-
+            session['uid'] = cur.fetchall()[0]["userid"]
 
             return redirect(url_for("home_bp.home"))
 
@@ -76,7 +99,7 @@ def register():
 
         # Session
         session['email'] = email
-        session['uid'] = cur.fetchall()[0]["userid"];
+        session['uid'] = cur.fetchall()[0]["userid"]
         # return
         return redirect(url_for("home_bp.home"))
 
