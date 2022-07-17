@@ -4,9 +4,11 @@
 from geopy.geocoders import Nominatim
 
 def get_coords(location): # gets coords from a given string value eg "India"
+    print(location)
     geo = Nominatim(user_agent="SWAPIFY")
     place = geo.geocode(location)
     coords = [place.longitude, place.latitude]
+    print(coords)
     return coords
 
 def calculate_distance(your_cords, garment_cords): # might be a bug here as this is a "dumb" system, ie thinks world is flat
