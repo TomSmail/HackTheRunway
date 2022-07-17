@@ -1,10 +1,13 @@
 FROM python:3.10.5-bullseye 
 # This is the version I used for dev
+
+RUN mkdir ./uploads
+
+
 RUN mkdir -p /app
 WORKDIR /app
 
 RUN mkdir ./uploads
-RUN mkdir /app/uploads
 
 
 
