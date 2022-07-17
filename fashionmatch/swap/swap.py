@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 from fashionmatch.db import get_db
 from .locateswaps import genGraph, cycleFind
 from fashionmatch.auth import ensurelogin
-
+from .pointsGenerator import get_coords, calculate_distance,calculate_score
 
 swap_bp = Blueprint(
     "swap_bp", __name__, template_folder="templates", 
@@ -43,7 +43,7 @@ def main():
 def swapid(id):
     db, cur = get_db()
 
-    cur.execute('SELECT "Match_Article".hasid,hasuserid,wantsuserid FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID INNER JOIN "User_Wants" ON "Match_Article".WantsID="User_Wants".WantsID WHERE matchid=%s;',(id,))
+    cur.execute('SELECT "Match_Article".hasid,hasuserid,wantsuserid,locationmade,cotton FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID INNER JOIN "User_Wants" ON "Match_Article".WantsID="User_Wants".WantsID WHERE matchid=%s;',(id,))
     results = cur.fetchall()
     mapping = {}
     
@@ -54,6 +54,13 @@ def swapid(id):
         if item["wantsuserid"] == session['uid']: #This swap is going from item["hasuserid"] to currently logged in user
             sender_id = item["hasuserid"]
             sender_has_id = item["hasid"]
+            print("\n\n\n\n\n\n\n\n\n\n")
+            
+            locationMade = item["locationmade"]
+            print("locaMade" + locationMade)
+            cotton = item["cotton"]
+            madeCoords = get_coords(locationMade)
+            print(madeCoords)
         elif item["hasuserid"] == session['uid']:
             receiver_id = item["wantsuserid"]
             receiver_has_id = item["hasid"]
@@ -71,13 +78,19 @@ def swapid(id):
     pfps = []
     names = []
     locations = []
+    user_coords = []
     def getNext(userid):
-        nonlocal pfps, names
+        nonlocal pfps, names,user_coords
         cur.execute('SELECT firstname,profilepicturelink,coordlat,coordlong FROM "User" WHERE userid=%s;',(userid,));
         record = cur.fetchall()[0]
         pfps.append(record["profilepicturelink"])
         names.append(record["firstname"])
         locations.append({"lat":record["coordlat"],"long":record["coordlong"]})
+
+        print(userid)
+        print(session['uid'])
+        if userid == session['uid']:
+            user_coords = [float(record["coordlat"]),float(record["coordlong"])]
         return mapping[userid]
 
     currentUser = list(mapping.keys())[0]
@@ -86,6 +99,11 @@ def swapid(id):
     while (not(startUser == currentUser)):
         currentUser = getNext(currentUser)
     
+    print(user_coords)
+    points = calculate_score(user_coords,madeCoords,cotton)
+
+    
+
     return render_template(
         "swap.jinja2",
         PFPs=pfps,
@@ -94,7 +112,8 @@ def swapid(id):
         sender_uname=sender_uname,
         giving_image_url=receiver_image,
         getting_image_url=sender_image,
-        locations=locations
+        locations=locations,
+        points = points
     )
 
 
