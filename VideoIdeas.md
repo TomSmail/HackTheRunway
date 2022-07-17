@@ -8,4 +8,6 @@
 3. show them getting a swap
 4. show them making a swap, show map
 5. then irl we do the swap 
- 
+  
+  graph theory to calculate swaps, 7 interlinked tables using CockroachDB, a complex frontend backend solution, interactive - user friendly webpage, 
+CockroachDB helped us drastically keep down our time spent on building our database and helped the remote team synergise effectively. 
