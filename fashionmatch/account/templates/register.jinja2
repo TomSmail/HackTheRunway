@@ -2,24 +2,26 @@
 {% block extrastyles %}<link rel="stylesheet" href="{{url_for('account_bp.static', filename='account.css')}}">{% endblock %}
 {% block main %}
 
+    <div id="bg">
 
-<br>
     <div class="centre">
 
-<form method="POST" style="display:block;">
-        <h2 >Register and Start Swapping</h2>
+        <form method="POST" style="display:block;">
+            <h2 >Register and Start Swapping</h2>
 
-      <input type="text" id="firstName" name="firstName" placeholder = "First Name" required><br>
+            <input type="text" id="firstName" name="firstName" placeholder = "First Name" required><br>
 
-      <input type="text" id="lastName" name="lastName" placeholder = "Last Name" required><br>
+            <input type="text" id="lastName" name="lastName" placeholder = "Last Name" required><br>
 
-      <input type="text" id="email" name="email" placeholder = "Email Address" required><br>
+            <input type="text" id="email" name="email" placeholder = "Email Address" required><br>
 
-      <input type="password" id="password" name="password" placeholder = "Password" required><br><br>
-  
-      <input type="submit" value="Submit">
+            <input type="password" id="password" name="password" placeholder = "Password" required><br><br>
+        
+            <input type="submit" value="Submit">
 
-  </form> 
-      </div>
+        </form> 
+    </div>
+        </div>
+
 
 {% endblock %}
