@@ -12,7 +12,7 @@ leaderboard_bp = Blueprint(
 def home():
     # Fetch Highest Scoring Users
     db, cur = get_db()
-    cur.execute('SELECT  firstname, lastname, points FROM "User" ORDER BY points',)
+    cur.execute('SELECT  firstname, lastname, points FROM "User" ORDER BY points DESC',)
     resp = cur.fetchall()
     return render_template(
         "leaderboard.jinja2",

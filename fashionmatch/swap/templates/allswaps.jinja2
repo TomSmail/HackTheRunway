@@ -13,12 +13,13 @@
 
 
         <h2>You have {{number}} {{ 'swap' if number==1 else 'swaps' }}!</h2>
-        <table>
+        <table style="cursor: pointer;">
         {% for item in items %}
-            <tr>
-                <td> {{ 'OneStatus' if item.status==1 else 'ZeroStatus' }}</td>
+            <tr onclick="window.location.href='{{url_for('swap_bp.swapid', id=item.matchid)}}'">
 
-                <td><img src="{{ url_for('home_bp.download_file', filename=item.imageofitem) }} " alt="img" width="50%" ></td>
+                <td> <a href="{{url_for('swap_bp.swapid', id=item.matchid)}}" style="text-decoration: none; ">{{ 'Accepted' if item.status==1 else 'Waiting for your approval...' }}</a></td>
+                <td><img src="{{ url_for('home_bp.download_file', filename=item.imageofitem) }} " alt="img" height="200px" ></td>
+
 
             </tr>
         {% endfor %}
