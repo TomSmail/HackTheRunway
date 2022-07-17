@@ -44,27 +44,69 @@ def main():
 def swapid(id):
     db, cur = get_db()
 
-    cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID INNER JOIN "Users" ON "Users".userid="User_Has".hasuserid WHERE matchid=%s;',(id))
+    cur.execute('SELECT "Match_Article".hasid,hasuserid,wantsuserid FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID INNER JOIN "User_Wants" ON "Match_Article".WantsID="User_Wants".WantsID WHERE matchid=%s;',(id,))
     results = cur.fetchall()
+    mapping = {}
+    
+    for item in results:
+        print(item)
+        print(session['uid'])
+        mapping[item["hasuserid"]] = item["wantsuserid"]
+        if item["wantsuserid"] == session['uid']: #This swap is going from item["hasuserid"] to currently logged in user
+            sender_id = item["hasuserid"]
+            sender_has_id = item["hasid"]
+        elif item["hasuserid"] == session['uid']:
+            receiver_id = item["wantsuserid"]
+            receiver_has_id = item["hasid"]
+
+    cur.execute('SELECT firstname FROM "User" WHERE userid=%s;',(sender_id,));
+    sender_uname = cur.fetchall()[0]["firstname"]
+    cur.execute('SELECT firstname FROM "User" WHERE userid=%s;',(receiver_id,)); 
+    receiver_uname = cur.fetchall()[0]["firstname"]
+    cur.execute('SELECT imageofitem FROM "User_Has" WHERE hasid=%s;',(sender_has_id,)); 
+    sender_image = cur.fetchall()[0]["imageofitem"]
+    cur.execute('SELECT imageofitem FROM "User_Has" WHERE hasid=%s;',(receiver_has_id,)); 
+    receiver_image = cur.fetchall()[0]["imageofitem"]
+    
 
     pfps = []
     names = []
-    receiver_uname = ""
-    sender_uname = ""
-    receiver_image = ""
-    sender_image = ""
+    locations = []
+    def getNext(userid):
+        nonlocal pfps, names
+        cur.execute('SELECT firstname,profilepicturelink,coordlat,coordlong FROM "User" WHERE userid=%s;',(userid,));
+        record = cur.fetchall()[0]
+        pfps.append(record["profilepicturelink"])
+        names.append(record["firstname"])
+        locations.append({"lat":record["coordlat"],"long":record["coordlong"]})
+        return mapping[userid]
 
+    currentUser = list(mapping.keys())[0]
+    startUser = list(mapping.keys())[0]
+    currentUser = getNext(currentUser)
+    while (not(startUser == currentUser)):
+        currentUser = getNext(currentUser)
+    
+    return render_template(
+        "swap.jinja2",
+        PFPs=pfps,
+        Names=names,
+        receiver_uname=receiver_uname,
+        sender_uname=sender_uname,
+        giving_image_url=receiver_image,
+        getting_image_url=sender_image,
+        locations=locations
+    )
+
+
+
+    #
+    # 
     #IDEALLY WE WANT TO CENTER THE USER SO THEY ARE AT THE MIDDL EOF THE PAGe / MAYB ENOT AN ISSUE 
     #SCROLLBAR?
 
-    def getNext(record):
-        nonlocal pfps, names
-        pfps.append(record["profilepicturelink"])
-        names.append(record["firstname "])
     
-    
-        db, cur = get_db()
-        cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID INNER JOIN "Users" ON "Users".userid="User_Has".hasuserid WHERE matchid=%s;',(id))
+
 
     # startItem = results[0]
     # item = 
@@ -79,18 +121,7 @@ def swapid(id):
 # @swap_bp.route('/<id>')
 # @ensurelogin
 # def swapid(id):
-#     # cur
-#     return render_template(
-#         "swap.jinja2",
-#         PFPs=pfps,
-#         Names=names,
-#         receiver_uname=receiver_uname,
-#         sender_uname=sender_uname,
-#         giving_image_url=receiver_image,
-#         getting_image_url=sender_image,
-#         locations=[{"lat": 51.5, "long": -0.09},
-#                    {"lat": 29.7, "long": -5.0}, {"lat": 20.0, "long": 5.0}]
-#     )
+    # cur
 
     # return render_template(
     #     "swap.jinja2",

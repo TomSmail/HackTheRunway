@@ -113,13 +113,13 @@
         <div class="column">
             <h2>You get from {{sender_uname}}</h2> {# need a username tag for the swapper#}
             <p>This is the piece of clothing you are getting in the swap</p>
-            <img src= {{getting_image_url}} alt="Their clothing picture">
+            <img src="{{ url_for('home_bp.download_file', filename=getting_image_url)}}" alt="Their clothing picture">
         </div>
 
         <div class="column">
             <h2>You give to {{receiver_uname}}</h2>  
             <p>This is the piece of clothing you are offering in the swap</p>
-            <img src= {{giving_image_url}} alt="Your clothing picture">
+            <img src="{{ url_for('home_bp.download_file', filename=giving_image_url)}}" alt="Your clothing picture">
 
         </div>
 
@@ -154,13 +154,20 @@ var greenIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
-L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
+//L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map); //Example marker
 
                 var simpleVector1; var marker;
+                markers = []
                 {%for location in locations%}
                     marker = L.marker([{{location["lat"]}}, {{location["long"]}}],{icon:greenIcon}).addTo(map).bindPopup("test");
                     simpleVector1 = L.polyline([[{%if loop.first%}{{locations[-1]["lat"]}}{%else%}{{loop.previtem["lat"]}}{%endif%},{%if loop.first%}{{locations[-1]["long"]}}{%else%}{{loop.previtem["long"]}}{%endif%}],[{{location["lat"]}}, {{location["long"]}}]], {color: "green", weight: 2 }).addTo(map).arrowheads({size: '20px', frequency: 1,start:"50%",end:"50%",fill:true})
+                    markers.push(marker);
                 {%endfor%}
+
+                //Zoom-pan map automatically to point it where it needs to be
+                let markerBounds = L.latLngBounds();
+                markers.forEach(marker => {markerBounds.extend([marker.getLatLng().lat,marker.getLatLng().lng])});
+                map.fitBounds(markerBounds);
                 
             </script>
         </div>
