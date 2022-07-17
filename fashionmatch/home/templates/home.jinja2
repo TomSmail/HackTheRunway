@@ -72,12 +72,46 @@
 
         </table>
 
-
     </div>
     
     {% endfor %}
 
 
+    <div class="full box listings">
+        <span>Items you're looking for:</span>
+    </div>
+
+
+    {% for item in response %}
+    <div class="half box item">    
+        {% set typemap = {"tshirt":"T-Shirt", "shorts":"Shorts", "dress":"Dress"} %}
+        {% set pricemap = {1:"£", 2:"££", 3:"£££"} %}
+        {% set conditionmap = {1:"As New", 2:"Some Wear", 3:"Heavily worn"} %}
+        {% set cottonmap = {true:"Yes", false:"No"} %}
+
+
+        <table class="datatable">
+            <tr>
+                <td>Type</td>
+                <td>{{typemap[item.typeofclothing]}}</td>
+            </tr>
+            <tr>
+                <td>Color</td>
+                <td>{{item.color.capitalize()}}</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>{{pricemap[item.pricerange]}}</td>
+            </tr>
+            <tr>
+                <td>Condition</td>
+                <td>{{conditionmap[item.condition]}}</td>
+            </tr>
+        </table>
+
+    </div>
+    
+    {% endfor %}
 
 
 

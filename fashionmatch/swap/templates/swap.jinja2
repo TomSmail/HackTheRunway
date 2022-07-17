@@ -60,7 +60,8 @@
     {% for PFP in PFPs %}
         <div class="column" style="justify-content:center;text-align:center;align-items:center;">
             <img src="{{PFP}}" class="PFP" />
-            <p>{{Names[loop.index-1]}}</p>
+            <p>{{names[loop.index-1]}}</p>
+            <i class="fa-solid fa-circle-check" style="color:{%if approved[loop.index-1]%}green{%else%}gray{%endif%};"></i>
         </div>
         {% if loop.last == False%}
 
@@ -127,8 +128,12 @@
     </div>
 
     <div style="position: centre">
-        <form method="post">
+        <form method="post" action="approve">
             <button class ="btn" name ="approved" type ="submit">Approve</button>
+        </form>
+
+        <form method="post" action="reject">            
+            <button class ="btn" name ="rejected" type ="submit">Reject</button>
         </form> 
     <div>
 
@@ -159,7 +164,7 @@ var greenIcon = new L.Icon({
                 var simpleVector1; var marker;
                 markers = []
                 {%for location in locations%}
-                    marker = L.marker([{{location["lat"]}}, {{location["long"]}}],{icon:greenIcon}).addTo(map).bindPopup("test");
+                    marker = L.marker([{{location["lat"]}}, {{location["long"]}}],{icon:greenIcon}).addTo(map).bindPopup("<strong>{{names[loop.index-1]}}</strong> - {{addresses[loop.index-1]}}");
                     simpleVector1 = L.polyline([[{%if loop.first%}{{locations[-1]["lat"]}}{%else%}{{loop.previtem["lat"]}}{%endif%},{%if loop.first%}{{locations[-1]["long"]}}{%else%}{{loop.previtem["long"]}}{%endif%}],[{{location["lat"]}}, {{location["long"]}}]], {color: "green", weight: 2 }).addTo(map).arrowheads({size: '20px', frequency: 1,start:"50%",end:"50%",fill:true})
                     markers.push(marker);
                 {%endfor%}
