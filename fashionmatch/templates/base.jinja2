@@ -42,7 +42,8 @@
         <ul>
             <li>
                 {% if session['email'] %}
-                    <span>{{session['email']}}</span>
+                    {# <span>{{session['email']}}</span> #}
+                    <a class="rightlink" href="{{url_for('account_bp.home')}}">{{session['email']}}</a>
                     <a class="rightlink" href="{{url_for('account_bp.logout')}}">Logout</a>
                 {% else %}
                     <a class="rightlink" href="{{url_for('account_bp.login')}}">Login</a>
