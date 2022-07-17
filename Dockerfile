@@ -3,6 +3,9 @@ FROM python:3.10.5-bullseye
 RUN mkdir -p /app
 WORKDIR /app
 
+RUN mkdir /uploads
+
+
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
