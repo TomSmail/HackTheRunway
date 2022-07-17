@@ -68,7 +68,7 @@ main {
     text-align: center;
     width: 96%;
     flex-direction: column;
-    max-width: 70em;
+    max-width: 80em;
 
     min-width: 45em;
     margin: 0 auto;
