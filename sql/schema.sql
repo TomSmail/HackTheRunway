@@ -4,8 +4,10 @@ CREATE TABLE "User" (
 	Firstname VARCHAR(100) NOT NULL,
 	Lastname VARCHAR(100) NOT NULL,
 	PasswordHash VARCHAR(512) NOT NULL,
-	Points INT,
-	Address TEXT,
+	Points INT DEFAULT 0,
+	Address TEXT, 
+	CoordLat VARCHAR(25),
+	CoordLong VARCHAR(25),
 	ProfilePictureLink Text
 );
 
