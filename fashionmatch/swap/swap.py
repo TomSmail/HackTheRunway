@@ -10,7 +10,8 @@ from fashionmatch.auth import ensurelogin
 
 
 swap_bp = Blueprint(
-    "swap_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/sstatic'
+    "swap_bp", __name__, template_folder="templates", 
+    static_folder="static", static_url_path='/sstatic'
 )
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'jpg', 'gif'}
@@ -24,22 +25,20 @@ def allowed_file(filename):
 @swap_bp.route("/", methods=["GET"])
 @ensurelogin
 def main():
-    amount = len(cur.fetchall())
-
+    # amount = len(cur.fetchall()) Not sure this is needed?
     db, cur = get_db()
     uid = (session.get("uid", None))
     cur.execute('SELECT * FROM "Match_Article" INNER JOIN "User_Has" ON "Match_Article".HasID="User_Has".HasID WHERE HasUserID=%s;', (str(uid),))
     items = cur.fetchall()
-    
     return render_template(
         "allswaps.jinja2",
-        number = len(items),
+        number=len(items),
         items=items
     )
 
 
 
-@swap_bp.route('/<id>')  
+@swap_bp.route('/<id>')
 @ensurelogin
 def swapid(id):
     db, cur = get_db()
