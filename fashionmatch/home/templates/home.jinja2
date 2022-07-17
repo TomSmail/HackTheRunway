@@ -33,6 +33,8 @@
     {% for item in response %}
     <div class="half box item">
 
+        {# RealDictRow([('typeofclothing', 'tshirt'), ('color', 'blue'), ('pricerange', 1), ('condition', 1), ('locationmade', None), ('cotton', None), ('imageofitem', 'downloadx.png')]) #}
+        <img src="{{ url_for('home_bp.download_file', filename=item.imageofitem) }} " alt="img" width="50%" >
 
         {% set typemap = {"tshirt":"T-Shirt", "shorts":"Shorts", "dress":"Dress"} %}
         {% set pricemap = {1:"£", 2:"££", 3:"£££"} %}
