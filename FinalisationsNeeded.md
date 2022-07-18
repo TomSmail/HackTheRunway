@@ -1,0 +1,15 @@
+# To Do
+- Update the index page so that when a non-logged in user opens the app they see an intro page and FAQs etc.
+- Make the Accept / Reject interface functional and update the statuses in the DB when a user accepts / rejects (or delete from DB) a swap
+- Build the Tags feature
+- Run some performance modelling
+- Implement push notifications when a new swap is found
+- Make website responsive for mobile / available as an app
+- Fix issue with the graph algorithm if the same user has the same item several times
+- Ensure that any errors flashing on the page through Flask can be displayed somewhere
+- Ensure users set a PFP and coordinates when registering, not just when updating their details.
+- Add more types of clothes / colours etc.
+- Make it possible for partial matches to count
+- Show the clothing type on the swap page
+- Show an image of the want clothing from unsplash
+- Better testing of the Graph Algorithm
