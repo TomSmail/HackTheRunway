@@ -13,3 +13,6 @@
 - Show the clothing type on the swap page
 - Show an image of the want clothing from unsplash
 - Better testing of the Graph Algorithm
+- Make scores update when the users accept the swaps
+- Make status updates for when the users send and receive the items
+- Make items disappear when swaps are accepted so that users have to choose between cycles.
